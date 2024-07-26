@@ -1,0 +1,40 @@
+[
+    {
+      "title": "Inicio",
+      "icon": "home",
+      "link": "/",
+      "children": []
+    },
+    {
+      "title": "Perfil",
+      "icon": "user",
+      "link": "/profile",
+      "children": []
+    },
+    {
+      "title": "Configuración",
+      "icon": "settings",
+      "link": "/settings",
+      "children": [
+        {
+          "title": "General",
+          "icon": "cogs",
+          "link": "/settings/general",
+          "children": []
+        },
+        {
+          "title": "Seguridad",
+          "icon": "shield",
+          "link": "/settings/security",
+          "children": []
+        }
+      ]
+    },
+    {
+      "title": "Cerrar Sesión",
+      "icon": "logout",
+      "link": "/logout",
+      "children": []
+    }
+  ]
+  
