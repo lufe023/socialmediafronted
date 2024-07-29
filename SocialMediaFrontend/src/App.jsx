@@ -7,7 +7,7 @@ import ProtectedRoutes from './components/ProtectedRoutes';
 import LandingPage from './components/landingPage/LandingPage';
 import LogOut from './components/AppLayout/user/LogOut';
 import NotFound from './components/AppLayout/NotFound';
-import getUserbyId from './components/AppLayout/user/getUserbyId';
+import getUserbyId from './components/AppLayout/user/getMyUser';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import UserAdministrator from './components/AppLayout/user/UserAdministrator';
@@ -36,7 +36,7 @@ function App() {
         <Route element={<ProtectedRoutes/>}>
           <Route path='/dashboard' element={<AppLayout/>} />
           <Route path='/administrator' element={<UserAdministrator/>} />
-          <Route path='/administrator:id' element={<Asignation/>} />
+          <Route path='/administrator/:id' element={<Asignation/>} />
         </Route>
         {/* Otras rutas protegidas pueden ir aquí */}
         <Route path='*' element={<NotFound/>} />

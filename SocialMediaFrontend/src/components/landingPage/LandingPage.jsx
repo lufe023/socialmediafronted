@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import HowToPlace from './HowToPlace';
 
 const LandingPage = () => {
   return (
@@ -34,6 +35,7 @@ const LandingPage = () => {
   </div>
 </nav>
 </div>
+<HowToPlace/>
 </div>
   );
 };

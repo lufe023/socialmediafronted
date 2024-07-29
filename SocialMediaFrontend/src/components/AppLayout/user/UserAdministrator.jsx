@@ -6,6 +6,7 @@ import getConfig from '../../utils/getConfig'
 import Aside from '../Aside'
 import NavBar from '../NavBar'
 import Spinner from '../../utils/Spiner'
+import { Link } from 'react-router-dom'
 
 const UserDashBoard = () => {
   const [users, setUsers] = useState([])
@@ -14,7 +15,7 @@ const UserDashBoard = () => {
     const URL = `${import.meta.env.VITE_API_SERVER}/api/v1/users?offset=0&limit=20`
       axios.get(URL, getConfig())
       .then(res => {
-       setUsers(res.data)
+      setUsers(res.data)
       })
       .catch(err =>{
         console.log(err)
@@ -32,7 +33,7 @@ const UserDashBoard = () => {
         
         Toast.fire({
           icon: 'error',
-          title: `Accion no permitida: ${err.response.statusText}`
+          title: `Accion no permitida: ${err.response.data.message}`
         })
       })
       
@@ -53,8 +54,8 @@ const UserDashBoard = () => {
         </div>
             <div className="col-sm-6">
             <ol className="breadcrumb float-sm-right">
-            <li className="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li className="breadcrumb-item active">Colaboradores</li>
+            <li className="breadcrumb-item"><Link to={'/dashboard'} href="#">Dashboard</Link></li>
+            <li className="breadcrumb-item active">Usuarios</li>
             </ol>
             </div>
       </div>
@@ -96,34 +97,20 @@ const UserDashBoard = () => {
         users?.map((user) => 
         <tr key={user.id}>
             <td>
-        <img className="img-circle img-bordered-sm" src={user.picture?user.picture:"dist/img/nopeople.jpg"} alt="user image" style={{height:'40px'}} />
-
+            <Link to={`/administrator/${user.id}`} >
+            <img className="img-circle img-bordered-sm" src={user.picture?user.picture:"dist/img/nopeople.jpg"} alt="user image" style={{height:'40px'}} />
+            </Link>
             </td>
-            <td>{`${user.firstName} ${user.lastName}`}</td>
+            <td><Link to={`/administrator/${user.id}`} >{`${user.firstName} ${user.lastName}`}</Link></td>
             <td>{user.user_role.roleName}</td>
             <td>{user.email} </td>
             <td>{user.status} </td>
             <td>
-            <div className="btn-group">
-  <button type="button" className="btn btn-default">Acciones</button>
-  <button type="button" className="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
-    <span className="sr-only">Toggle Dropdown</span>
-  </button>
-  <div className="dropdown-menu" role="menu" style={{}}>
-    <a className="dropdown-item" href="#">{user.status=='active'?'Desactivar':'Activar'}</a>
-    <a className="dropdown-item" href="#">Administrar</a>
-    
-  </div>
-</div>
-
-
+            <Link className="btn btn-default" to={`/administrator/${user.id}`}><i className="fas fa-user-edit"/> Administrar</Link>
             </td>
-
           </tr>
         )
         }
-       
-       
       </tbody>
     </table>
     {users.length==0?<div style={{width:"100%", display:"flex", justifyContent:"center"}}><Spinner/></div>:""}

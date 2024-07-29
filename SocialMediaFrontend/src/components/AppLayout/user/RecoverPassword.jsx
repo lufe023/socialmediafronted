@@ -116,7 +116,7 @@ if(isLoading){
   <div className="login-box">
   <div className="card card-outline card-primary">
     <div className="card-header text-center">
-      <a href="../../index2.html" className="h1"><b>SIGEEL</b></a>
+      <a href="../../index2.html" className="h1"><b>Social Media</b></a>
     </div>
     <div className="card-body">
       <p className="login-box-msg">Estás a un paso de tu nueva contraseña, recupera tu contraseña ahora.</p>
