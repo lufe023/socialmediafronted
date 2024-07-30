@@ -10,6 +10,7 @@ import Swal from 'sweetalert2'
 import changeUserRole from './changeUserRole'
 import NavBar from '../NavBar'
 import UpdateDataUser from './Forms/UpdateDataUser'
+import FundTransactionForm from './FundTransactionForm'
 
 const Asignation = () => {
 
@@ -18,6 +19,7 @@ const Asignation = () => {
         const [updates, setUpdates] = useState()
         const [selectedRole, setSelectedRole] = useState("");
         const {id} = useParams()
+
         const getPeople = ()=>{
           const URL = `${import.meta.env.VITE_API_SERVER}/api/v1/users/${id}`
             axios.get(URL, getConfig())
@@ -57,6 +59,16 @@ const urlRecuperation =  `${import.meta.env.VITE_FRONT_DOMAIN}/#recoverypassword
         console.error('Error al copiar al portapapeles: ', err);
       });
   };
+
+  const balance = user && user.fondos ? user.fondos.balance : 0;
+
+  // Formatear el balance
+  const formattedBalance = new Intl.NumberFormat('en-US', {
+      style: 'decimal',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+  }).format(balance);
+
 
 
   return (
@@ -98,7 +110,8 @@ const urlRecuperation =  `${import.meta.env.VITE_FRONT_DOMAIN}/#recoverypassword
                 <b>Correo</b> <a className="float-right">{user?.email}</a>
               </li>
               <li className="list-group-item">
-                <b>Fondos</b> <a className="float-right">{user.fondos?user.fondos:'00'}</a>
+  
+                <b>Fondos</b> <a className="float-right">{formattedBalance}</a>
               </li>
               <li className="list-group-item">
                 <b>Rol</b> <a className="float-right">{user?.user_role?.roleName}</a>
@@ -106,10 +119,9 @@ const urlRecuperation =  `${import.meta.env.VITE_FRONT_DOMAIN}/#recoverypassword
               <li className="list-group-item">
                 
                 <b>Estado</b> 
-
                 {
                   user.active?<a className="float-right">
-                    <button className='btn btn-success btn-xs'> Activo</button>
+                    <button className='btn btn-success btn-xs'> Activado</button>
                     </a>
                   :<a className="float-right">
                     <button className='btn btn-danger btn-xs'> Inactivo </button>
@@ -126,7 +138,7 @@ const urlRecuperation =  `${import.meta.env.VITE_FRONT_DOMAIN}/#recoverypassword
             </ul>
           </div>
         </div>
-        
+        <FundTransactionForm userId={id} getPeople={getPeople}/>
       </div>
       {/* /.col */}
       <div className="col-md-9">
@@ -227,7 +239,7 @@ const urlRecuperation =  `${import.meta.env.VITE_FRONT_DOMAIN}/#recoverypassword
     <div className="card-header">
       <h4 className="card-title w-100">
         <a className="d-block w-100" data-toggle="collapse" href="#collapseThree">
-        <i className="fas fa-user-cog"/> Administrador (Nivel 3)
+        <i className="fas fa-user-cog"/> Administrador (Nivel 2)
         </a>
       </h4>
     </div>

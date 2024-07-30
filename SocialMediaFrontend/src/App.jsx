@@ -14,9 +14,9 @@ import UserAdministrator from './components/AppLayout/user/UserAdministrator';
 import Asignation from './components/AppLayout/user/Asignation';
 import ForgotPassword from './components/AppLayout/user/ForgotPassword';
 import RecoverPassword from './components/AppLayout/user/RecoverPassword';
-
+import servicio from './Services.json'
 function App() {
-
+console.log(servicio)
   const dispatch = useDispatch();
   useEffect(() => {
     getUserbyId(dispatch);
