@@ -3,6 +3,7 @@ import Aside from './Aside';
 import NavBar from './NavBar';
 import MiniCards from '../MiniCards';
 import ContentPath from './ContentPath';
+import PurchaseServiceCard from './PurchaseServiceCard';
 
 const AppLayout = () => {
     return (
@@ -14,6 +15,7 @@ const AppLayout = () => {
             <div className='container-fluid'>
               <ContentPath/>
             <MiniCards/>
+            <PurchaseServiceCard/>
             </div>
             </div>
           </div>
