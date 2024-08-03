@@ -8,7 +8,7 @@ const MiniCards = () => {
     <div className="small-box bg-info">
       <div className="inner">
         <h3>150</h3>
-        <p>Usuarios este mes</p>
+        <p>Ordenes en progreso</p>
       </div>
       <div className="icon">
         <i className="ion ion-bag" />
@@ -22,7 +22,7 @@ const MiniCards = () => {
     <div className="small-box bg-success">
       <div className="inner">
         <h3>53<sup style={{fontSize: 20}}>%</sup></h3>
-        <p>Usuarios Hoy</p>
+        <p>Ordenes Completadas</p>
       </div>
       <div className="icon">
         <i className="ion ion-stats-bars" />
@@ -36,7 +36,7 @@ const MiniCards = () => {
     <div className="small-box bg-warning">
       <div className="inner">
         <h3>44</h3>
-        <p>User Registrations</p>
+        <p>Ordenes Parciales</p>
       </div>
       <div className="icon">
         <i className="ion ion-person-add" />
@@ -50,7 +50,7 @@ const MiniCards = () => {
     <div className="small-box bg-danger">
       <div className="inner">
         <h3>65</h3>
-        <p>Unique Visitors</p>
+        <p>Ordenes Canceladas</p>
       </div>
       <div className="icon">
         <i className="ion ion-pie-graph" />

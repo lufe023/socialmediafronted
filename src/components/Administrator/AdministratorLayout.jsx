@@ -1,10 +1,11 @@
 import React from 'react'
-import Aside from './Aside';
-import NavBar from './NavBar';
+import NavBar from '../AppLayout/NavBar';
+import Aside from '../AppLayout/Aside';
+import ContentPath from '../AppLayout/ContentPath';
 import MiniCards from '../MiniCards';
-import ContentPath from './ContentPath';
-import PurchaseServiceCard from './PurchaseServiceCard';
-import ServiceOrderCard from './ServiceOrderCard'
+import EditServiceCard from './EditServiceCard';
+
+
 
 const AppLayout = () => {
     return (
@@ -15,13 +16,8 @@ const AppLayout = () => {
             <div className='content'>
             <div className='container-fluid'>
               <ContentPath/>
-            <MiniCards/>
-            <div className='row'>
-              <ServiceOrderCard/>
-              </div>
-            
-            {/* <UserServiceOrders/> */}
-            <PurchaseServiceCard/>
+              <EditServiceCard/>
+
 
             </div>
             </div>

@@ -14,9 +14,9 @@ import UserAdministrator from './components/AppLayout/user/UserAdministrator';
 import Asignation from './components/AppLayout/user/Asignation';
 import ForgotPassword from './components/AppLayout/user/ForgotPassword';
 import RecoverPassword from './components/AppLayout/user/RecoverPassword';
-import servicio from './Services.json'
+import AdministratorLayout from './components/Administrator/AdministratorLayout'
 function App() {
-console.log(servicio)
+
   const dispatch = useDispatch();
   useEffect(() => {
     getUserbyId(dispatch);
@@ -35,8 +35,9 @@ console.log(servicio)
 
         <Route element={<ProtectedRoutes/>}>
           <Route path='/dashboard' element={<AppLayout/>} />
-          <Route path='/administrator' element={<UserAdministrator/>} />
-          <Route path='/administrator/:id' element={<Asignation/>} />
+          <Route path='/administrator/admin' element={<AdministratorLayout/>} />
+          <Route path='/administrator/user' element={<UserAdministrator/>} />
+          <Route path='/administrator/user/:id' element={<Asignation/>} />
         </Route>
         {/* Otras rutas protegidas pueden ir aquí */}
         <Route path='*' element={<NotFound/>} />

@@ -97,16 +97,16 @@ const UserDashBoard = () => {
         users?.map((user) => 
         <tr key={user.id}>
             <td>
-            <Link to={`/administrator/${user.id}`} >
+            <Link to={`/administrator/user/${user.id}`} >
             <img className="img-circle img-bordered-sm" src={user.picture?user.picture:"dist/img/nopeople.jpg"} alt="user image" style={{height:'40px'}} />
             </Link>
             </td>
-            <td><Link to={`/administrator/${user.id}`} >{`${user.firstName} ${user.lastName}`}</Link></td>
+            <td><Link to={`/administrator/user/${user.id}`} >{`${user.firstName} ${user.lastName}`}</Link></td>
             <td>{user.user_role.roleName}</td>
             <td>{user.email} </td>
             <td>{user.status} </td>
             <td>
-            <Link className="btn btn-default" to={`/administrator/${user.id}`}><i className="fas fa-user-edit"/> Administrar</Link>
+            <Link className="btn btn-default" to={`/administrator/user/${user.id}`}><i className="fas fa-user-edit"/> Administrar</Link>
             </td>
           </tr>
         )
