@@ -28,7 +28,7 @@ const ServiceOrderCard = ({ order }) => {
     };
 
     return (
-        <div className="col-6">
+        <div className=" col-sm-6 col-12">
             <div className="info-box">
             <span className={`info-box-icon ${getColorClass(order.externalStatus)}`}><i className={iconMap[order.serviceDetails.parentCategory] || 'fas fa-info'}></i></span>
             <div className="info-box-content">

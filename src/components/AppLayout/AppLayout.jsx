@@ -12,19 +12,19 @@ const AppLayout = () => {
           <NavBar/>
           <Aside/>
           <div className="content-wrapper">
-            <div className='content'>
+            <section className='content'>
             <div className='container-fluid'>
               <ContentPath/>
             <MiniCards/>
-            <div className='row'>
+   
               <ServiceOrderCard/>
-              </div>
+         
             
             {/* <UserServiceOrders/> */}
             <PurchaseServiceCard/>
 
             </div>
-            </div>
+            </section>
           </div>
           {/* <Footer /> */}
         </div>
