@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import getConfig from '../utils/getConfig';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import copy from 'clipboard-copy';
 import Swal from 'sweetalert2';
 
 const ServiceOrderCard = ({ order }) => {
@@ -13,65 +11,95 @@ const ServiceOrderCard = ({ order }) => {
     };
 
     const getColorClass = (status) => {
+
         switch (status) {
-            case 'completed':
-                return 'bg-success';
-            case 'pending':
+            case 'Completed':
+                return 'bg-primary';
+            case 'Pending':
                 return 'bg-warning';
-            case 'failed':
+            case 'Failed':
                 return 'bg-danger';
             case 'In progress':
-                return 'bg-primary';
+                return 'bg-info';
             default:
-                return 'bg-secondary';
+                return 'bg-secundary';
         }
     };
 
-    return (
-        <div className=" col-sm-6 col-12">
-            <div className="info-box">
-            <span className={`info-box-icon ${getColorClass(order.externalStatus)}`}><i className={iconMap[order.serviceDetails.parentCategory] || 'fas fa-info'}></i></span>
-            <div className="info-box-content">
-                <span className="info-box-text">{order.service.name}</span>
-                <span className="info-box-text"> Status: {order.externalStatus}</span>
-                <span className="info-box-number">{order.totalCost.toFixed(2)}</span>
+    const copiarUrlLink = () => {
+        copy(order.link)
+          .then(() => {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+            
+            Toast.fire({
+              icon: 'success',
+              title: 'URL copiada al porta papeles'
+            })
+          })
+          .catch((err) => {
+            console.error('Error al copiar al portapapeles: ', err);
+          });
+      };
+
+    return  (
+        <div className="col-sm-6 col-12">
+            <div className="card card-widget widget-user-2 shadow-sm">
+                <div className={`widget-user-header ${getColorClass(order.externalStatus)}`}>
+                    <div className="widget-user-image" style={{ display: 'flex', alignItems: 'center' }}>
+                        <i className={`${iconMap[order.serviceDetails.parentCategory] || 'fas fa-info'}`} style={{ fontSize: '40px', marginRight: '10px' }}></i>
+                        <p className="widget-user-desc" style={{ fontSize: '16px', margin: 0 }}>{order.serviceDetails.name}</p>
+                        
+                    </div>
+                </div>
+                
+                <div className="card-footer p-0">
+                    <ul className="nav flex-column">
+                    <li className="nav-item">
+                            <span className="nav-link">
+                                Link: <span className="float-right badge">
+                                    <a href={order.link}><i className="fas fa-link"></i></a>
+                                   
+                                    <i className="far fa-copy" style={{marginLeft:"10px"}} onClick={()=>copiarUrlLink()} />
+                                
+
+                                </span>
+                            </span>
+                        </li>
+                        <li className="nav-item">
+                            <span className="nav-link">
+                                Estado: <span className="float-right badge">{order.externalStatus}</span>
+                            </span>
+                        </li>
+                        <li className="nav-item">
+                            <span className="nav-link">
+                                Costo Total: <span className="float-right badge">{order.totalCost.toFixed(2)}</span>
+                            </span>
+                        </li>
+                        <li className="nav-item">
+                            <span className="nav-link">
+                                La cuenta inició en: <span className="float-right badge">{order.startCount}</span>
+                            </span>
+                        </li>
+                        <li className="nav-item">
+                            <span className="nav-link">
+                                Quedan: <span className="float-right badge">{order.remains}</span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-
- 
-        </div>
     );
 };
 
-const ServiceOrderList = () => {
-    const [orders, setOrders] = useState([]);
-
-    const user = useSelector(state => state.userSlice);
-
-    useEffect(() => {
-        const fetchOrders = async () => {
-            try {
-                const URL = `${import.meta.env.VITE_API_SERVER}/api/v1/serviceOrders/${user.id}`;
-                const response = await axios.get(URL, getConfig());
-                setOrders(response.data);
-            } catch (error) {
-                console.error('Error fetching user orders:', error);
-                Swal.fire('Error', 'Hubo un problema al cargar las órdenes del usuario.', 'error');
-            }
-        };
-        if(user.id){
-        fetchOrders();
-    }
-    }, [user.id]);
-
-    console.log(orders)
-    return (
-        <div className="row">
-            {orders.map(order => (
-                <ServiceOrderCard key={order.id} order={order} />
-            ))}
-        </div>
-    );
-};
-
-export default ServiceOrderList;
+export default ServiceOrderCard;

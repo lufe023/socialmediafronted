@@ -4,7 +4,10 @@ import NavBar from './NavBar';
 import MiniCards from '../MiniCards';
 import ContentPath from './ContentPath';
 import PurchaseServiceCard from './PurchaseServiceCard';
-import ServiceOrderCard from './ServiceOrderCard'
+import ServiceOrderCardB from './ServiceOrderCardB'
+import ServiceOrderList from './ServiceOrderList';
+
+
 
 const AppLayout = () => {
     return (
@@ -17,11 +20,12 @@ const AppLayout = () => {
               <ContentPath/>
             <MiniCards/>
    
-              <ServiceOrderCard/>
+             <ServiceOrderList/>
          
             
             {/* <UserServiceOrders/> */}
             <PurchaseServiceCard/>
+
 
             </div>
             </section>
