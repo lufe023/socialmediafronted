@@ -67,7 +67,7 @@ const ServiceOrderCard = ({ order }) => {
                     <li className="nav-item">
                             <span className="nav-link">
                                 Link: <span className="float-right badge">
-                                    <a href={order.link}><i className="fas fa-link"></i></a>
+                                    <a target='blank' href={order.link}><i className="fas fa-link"></i></a>
                                    
                                     <i className="far fa-copy" style={{marginLeft:"10px"}} onClick={()=>copiarUrlLink()} />
                                 
