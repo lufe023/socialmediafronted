@@ -7,6 +7,17 @@ import { formatDate } from '../utils/dateUtils';
 const NavBar = () => {
   const user = useSelector(state => state.userSlice);
   const formattedDate = formatDate(user?.createdAt);
+
+  
+  const balance = user && user.fondos ? user.fondos.balance : 0;
+
+  // Formatear el balance
+  const formattedBalance = new Intl.NumberFormat('en-US', {
+      style: 'decimal',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+  }).format(balance);
+  
   return (
  <nav className="main-header navbar navbar-expand navbar-white navbar-light">
   {/* Left navbar links */}
@@ -40,7 +51,7 @@ const NavBar = () => {
           <a href="#">Fondos</a>
         </div>
         <div className="col-4 text-center">
-          <a href="#">5,000</a>
+          <a href="#">{formattedBalance}</a>
         </div>
       </div>
       {/* /.row */}
@@ -52,6 +63,12 @@ const NavBar = () => {
     </li>
   </ul>
 </li>
+<li className="nav-item">
+  <a className="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+    <i className="fas fa-th-large" />
+  </a>
+</li>
+
 
 
 </ul>

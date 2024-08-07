@@ -4,6 +4,7 @@ import getConfig from '../utils/getConfig';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import ServiceOrderCard from './ServiceOrderCard';
+import MiniCards from '../MiniCards';
 
 const ServiceOrderList = () => {
     const [orders, setOrders] = useState([]);
@@ -25,13 +26,17 @@ const ServiceOrderList = () => {
             fetchOrders();
         }
     }, [user.id]);
-
     return (
+        <>
+        
+            <MiniCards orders={orders} />
         <div className="row">
+          
             {orders.map(order => (
                 <ServiceOrderCard key={order.id} order={order} />
             ))}
         </div>
+        </>
     );
 };
 

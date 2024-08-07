@@ -4,22 +4,20 @@ import NavBar from './NavBar';
 import MiniCards from '../MiniCards';
 import ContentPath from './ContentPath';
 import PurchaseServiceCard from './PurchaseServiceCard';
-import ServiceOrderCardB from './ServiceOrderCardB'
 import ServiceOrderList from './ServiceOrderList';
-
-
 
 const AppLayout = () => {
     return (
-        <div className="wrapper">
+        <div className="wrapper control-sidebar-slide-open">
           <NavBar/>
           <Aside/>
+   
           <div className="content-wrapper">
             <section className='content'>
             <div className='container-fluid'>
-              <ContentPath/>
-            <MiniCards/>
-   
+
+            <ContentPath PageName={"Dashboard"}/>
+            {/* <MiniCards/> */}
              <ServiceOrderList/>
          
             

@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import getConfig from "../../utils/getConfig";
+import getHistoryTransactions from './getHistoryTransactions'
 
-const FundTransactionForm = ({ userId, getPeople }) => {
+const FundTransactionForm = ({ userId, getPeople, setTransactions }) => {
   const [formData, setFormData] = useState({
     userId: userId,
     amount: "",
@@ -46,6 +47,7 @@ const FundTransactionForm = ({ userId, getPeople }) => {
         title: "Transacción creada exitosamente",
       });
      getPeople()
+     getHistoryTransactions(userId, setTransactions)
       // Limpiar el formulario
       setFormData({
         userId: userId, // Asegúrate de restaurar el userId
@@ -86,9 +88,10 @@ const FundTransactionForm = ({ userId, getPeople }) => {
               required
             >
               <option value="">Seleccione un tipo</option>
-              <option value="Transferencia Bancaria">Transferencia Bancaria</option>
-              <option value="Depósito en sub Agente">Depósito en sub Agente</option>
-              <option value="Otros">Otros</option>
+              <option value="deposit">Transferencia Bancaria</option>
+              <option value="deposit">Depósito en sub Agente</option>
+              <option value="refund">Reembolso</option>
+              
             </select>
           </div>
           <div className="form-group">
