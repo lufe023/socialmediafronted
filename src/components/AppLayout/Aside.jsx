@@ -43,13 +43,13 @@ const Aside = () => {
             </li>
 
             <li className={`nav-item ${isActive('/administrator') ? 'menu-open' : ''}`}>
-              <Link to='#' className={`nav-link ${isActive('/administrator') ? 'active' : ''}`}>
+              <NavLink to='#' className={`nav-link ${isActive('/administrator') ? 'active' : ''}`}>
                 <i className="nav-icon fa-solid fa-user-lock" />
                 <p>
                   Administrar
                   <i className="right fas fa-angle-left" />
                 </p>
-              </Link>
+              </NavLink>
               <ul className="nav nav-treeview">
                 <li className="nav-item">
                   <NavLink to='/administrator/user' className="nav-link">
