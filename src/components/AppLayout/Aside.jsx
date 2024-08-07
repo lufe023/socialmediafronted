@@ -42,23 +42,23 @@ const Aside = () => {
               </NavLink>
             </li>
 
-            <li className={`nav-item ${isActive('/administrator') ? 'menu-open' : ''}`}>
-              <NavLink to='#' className={`nav-link ${isActive('/administrator') ? 'active' : ''}`}>
-                <i className="nav-icon fa-solid fa-user-lock" />
-                <p>
-                  Administrar
-                  <i className="right fas fa-angle-left" />
-                </p>
-              </NavLink>
+            <li  className={'nav-item menu-is-openig menu-open'}>
+                <NavLink  className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'}>
+                  <i className="nav-icon fas fa-tachometer-alt" />
+                  <p>
+                    Panel Principal
+                    <i className="right fas fa-angle-left" />
+                  </p>
+                </NavLink>
               <ul className="nav nav-treeview">
                 <li className="nav-item">
-                  <NavLink to='/administrator/user' className="nav-link">
+                  <NavLink to='/administrator/user'className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'}>
                     <i className="fas fa-users nav-icon" />
                     <p>Usuarios</p>
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink to='/administrator/admin' className="nav-link">
+                  <NavLink to='/administrator/admin' className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'}>
                     <i className="nav-icon fas fa-users" />
                     <p>Administrador</p>
                   </NavLink>
