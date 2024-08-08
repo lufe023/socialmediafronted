@@ -35,6 +35,7 @@ const Aside = () => {
         </div>
         <nav className="mt-2">
           <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            
             <li className="nav-item">
               <NavLink to='/dashboard' className="nav-link">
                 <i className="nav-icon fas fa-tachometer-alt" />
@@ -43,10 +44,11 @@ const Aside = () => {
             </li>
 
             <li  className={'nav-item menu-is-openig menu-open'}>
-                <NavLink  className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'}>
-                  <i className="nav-icon fas fa-tachometer-alt" />
+                <NavLink  className={({isActive}) => isActive ? 'nav-link active bg-info' : 'nav-link'}>
+                  <i className="nav-icon fas fa-tools" />
+
                   <p>
-                    Panel Principal
+                    Administración
                     <i className="right fas fa-angle-left" />
                   </p>
                 </NavLink>

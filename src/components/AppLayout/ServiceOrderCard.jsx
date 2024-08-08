@@ -9,7 +9,7 @@ const ServiceOrderCard = ({ order }) => {
         Twitter: 'fab fa-twitter',
         // Añade más mapeos de iconos según sea necesario
     };
-
+console.log(order)
     const getColorClass = (status) => {
 
         switch (status) {
@@ -57,7 +57,7 @@ const ServiceOrderCard = ({ order }) => {
                 <div className={`widget-user-header ${getColorClass(order.externalStatus)}`}>
                     <div className="widget-user-image" style={{ display: 'flex', alignItems: 'center' }}>
                         <i className={`${iconMap[order.serviceDetails.parentCategory] || 'fas fa-info'}`} style={{ fontSize: '40px', marginRight: '10px' }}></i>
-                        <p className="widget-user-desc" style={{ fontSize: '16px', margin: 0 }}>{order.serviceDetails.name}</p>
+                        <p className="widget-user-desc" style={{ fontSize: '16px', margin: 0 }}>{order.serviceDescription}</p>
                         
                     </div>
                 </div>
@@ -66,10 +66,11 @@ const ServiceOrderCard = ({ order }) => {
                     <ul className="nav flex-column">
                     <li className="nav-item">
                             <span className="nav-link">
-                                Link: <span className="float-right badge">
-                                    <a target='blank' href={order.link}><i className="fas fa-link"></i></a>
-                                   
-                                    <i className="far fa-copy" style={{marginLeft:"10px"}} onClick={()=>copiarUrlLink()} />
+                                Link: 
+                                
+                                <span className="float-right badge text-muted " style={{fontSize:"15px"}}>
+                                {order.link} <a target='blank' href={order.link}><i className="fas fa-link"></i></a>
+                                    <i className="far fa-copy" style={{marginLeft:"10px", cursor:"pointer"}} onClick={()=>copiarUrlLink()} />
                                 
 
                                 </span>
