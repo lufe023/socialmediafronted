@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import getConfig from '../utils/getConfig';
-import { useSelector } from 'react-redux';
 import NavBar from '../AppLayout/NavBar';
 import Aside from '../AppLayout/Aside';
 import ContentPath from '../AppLayout/ContentPath';
+import Cargando from '../utils/Cargando';
 
 const iconMap = {
     Facebook: 'fab fa-facebook',
@@ -20,7 +20,7 @@ const iconMap = {
 };
 
 const ServicesPage = () => {
-    const user = useSelector(state => state.userSlice);
+
     const [services, setServices] = useState([]);
     const [categories, setCategories] = useState([]);
     const [searchText, setSearchText] = useState('');
@@ -78,13 +78,13 @@ const ServicesPage = () => {
         <div className="wrapper control-sidebar-slide-open">
           <NavBar/>
           <Aside/>
-   
           <div className="content-wrapper">
             <section className='content'>
+   
             <div className='container-fluid'>
                 <ContentPath PageName={"Servicios"}/>
                 <h2 className="text-center display-4">Buscar Servicio</h2>
-
+    
                 <div className="row">
                     <div className="col-md-8 offset-md-2 p-5">
                         <div className="input-group">
@@ -103,7 +103,12 @@ const ServicesPage = () => {
                         </div>
                     </div>
                 </div>
-
+                {categories.length===0?
+                <div className='col-12 p-5' style={{display:"flex",justifyContent:"center"}}>
+                <Cargando/>
+                </div>:""
+            }
+               
                 <div className="row">
                     <div className="col-md-6">
                         {firstHalfCategories?.map((category, index) => {
@@ -113,7 +118,7 @@ const ServicesPage = () => {
                             const iconClass = iconMap[category] || 'fas fa-question-circle'; // Default icon if no match
 
                             return (
-                                <div className="card card-default collapsed-card" key={category}>
+                                <div className="card card-primary card-outline collapsed-card" key={category}>
                                     <div className="card-header">
                                         <h3 className="card-title">
                                             <i className={`mr-2 ${iconClass}`} /> {category}
@@ -157,7 +162,7 @@ const ServicesPage = () => {
                             const iconClass = iconMap[category] || 'fas fa-question-circle'; // Default icon if no match
 
                             return (
-                                <div className="card card-default collapsed-card" key={category}>
+                                <div className="card card-primary card-outline collapsed-card" key={category}>
                                     <div className="card-header">
                                         <h3 className="card-title">
                                             <i className={`mr-2 ${iconClass}`} /> {category}

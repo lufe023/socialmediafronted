@@ -29,8 +29,8 @@ const TransactionsHistory = ({ transactions = [] }) => {
       <div className="card-body" style={{ display: 'block' }}>
         <div className="tab-pane" id="timeline">
           <div className="timeline timeline-inverse">
-            {sortedTransactions.map(transaction => (
-              <OrderCard key={transaction.id} transaction={transaction} allCollapsed={allCollapsed} />
+            {sortedTransactions.map((transaction, idx) => (
+              <OrderCard key={idx} transaction={transaction} allCollapsed={allCollapsed} />
             ))}
             <div>
               <i className="far fa-clock bg-gray" />
