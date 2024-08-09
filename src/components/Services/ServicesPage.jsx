@@ -69,6 +69,11 @@ const ServicesPage = () => {
         )
     );
 
+    // Divide las categorías en dos partes
+    const midIndex = Math.ceil(categories.length / 2);
+    const firstHalfCategories = categories.slice(0, midIndex);
+    const secondHalfCategories = categories.slice(midIndex);
+
     return (
         <div className="wrapper control-sidebar-slide-open">
           <NavBar/>
@@ -100,15 +105,15 @@ const ServicesPage = () => {
                 </div>
 
                 <div className="row">
-                    {categories?.map((category, index) => {
-                        const filteredServiceList = filteredServices[index];
-                        if (filteredServiceList?.length === 0) return null; // No mostrar tarjeta si no hay servicios
+                    <div className="col-md-6">
+                        {firstHalfCategories?.map((category, index) => {
+                            const filteredServiceList = filteredServices[index];
+                            if (filteredServiceList?.length === 0) return null; // No mostrar tarjeta si no hay servicios
 
-                        const iconClass = iconMap[category] || 'fas fa-question-circle'; // Default icon if no match
+                            const iconClass = iconMap[category] || 'fas fa-question-circle'; // Default icon if no match
 
-                        return (
-                            <div className="col-md-6" key={category}>
-                                <div className="card card-default collapsed-card">
+                            return (
+                                <div className="card card-default collapsed-card" key={category}>
                                     <div className="card-header">
                                         <h3 className="card-title">
                                             <i className={`mr-2 ${iconClass}`} /> {category}
@@ -140,9 +145,53 @@ const ServicesPage = () => {
                                         </table>
                                     </div>
                                 </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
+                    </div>
+
+                    <div className="col-md-6">
+                        {secondHalfCategories?.map((category, index) => {
+                            const filteredServiceList = filteredServices[index + midIndex];
+                            if (filteredServiceList?.length === 0) return null; // No mostrar tarjeta si no hay servicios
+
+                            const iconClass = iconMap[category] || 'fas fa-question-circle'; // Default icon if no match
+
+                            return (
+                                <div className="card card-default collapsed-card" key={category}>
+                                    <div className="card-header">
+                                        <h3 className="card-title">
+                                            <i className={`mr-2 ${iconClass}`} /> {category}
+                                        </h3>
+                                        <div className="card-tools">
+                                            <button type="button" className="btn btn-tool" data-card-widget="collapse">
+                                                <i className="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className="card-body p-0">
+                                        <table className="table table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th style={{ width: '10px' }}>#</th>
+                                                    <th>Servicio</th>
+                                                    <th>Precio</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {filteredServiceList?.map((service, idx) => (
+                                                    <tr key={service.id}>
+                                                        <td>{idx + 1}.</td>
+                                                        <td>{service.name}</td>
+                                                        <td>${service.price}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
             </section>
