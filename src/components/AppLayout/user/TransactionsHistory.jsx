@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import OrderCard from './OrderCard';
 
 const TransactionsHistory = ({ transactions = [] }) => {
-  // Ordenar las transacciones por fecha en orden descendente (más reciente primero)
+  const [allCollapsed, setAllCollapsed] = useState(true);
+
   const sortedTransactions = transactions.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  const toggleAll = () => {
+    setAllCollapsed(!allCollapsed);
+  };
 
   return (
     <div className="card">
       <div className="card-header">
         <h3 className="card-title">Historia de Transacciones</h3>
         <div className="card-tools">
+          <button type="button" className="btn btn-tool" onClick={toggleAll}>
+            <i className={`fas fa-${allCollapsed ? 'layer-group' : 'layer-group'}`}></i> 
+          </button>
           <button type="button" className="btn btn-tool" data-card-widget="collapse">
             <i className="fas fa-minus" />
           </button>
@@ -21,9 +29,8 @@ const TransactionsHistory = ({ transactions = [] }) => {
       <div className="card-body" style={{ display: 'block' }}>
         <div className="tab-pane" id="timeline">
           <div className="timeline timeline-inverse">
-            {console.log(sortedTransactions)}
             {sortedTransactions.map(transaction => (
-             <OrderCard transaction={transaction}/>
+              <OrderCard key={transaction.id} transaction={transaction} allCollapsed={allCollapsed} />
             ))}
             <div>
               <i className="far fa-clock bg-gray" />
