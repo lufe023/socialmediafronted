@@ -15,6 +15,9 @@ import Asignation from './components/AppLayout/user/Asignation';
 import ForgotPassword from './components/AppLayout/user/ForgotPassword';
 import RecoverPassword from './components/AppLayout/user/RecoverPassword';
 import AdministratorLayout from './components/Administrator/AdministratorLayout'
+import ViewOrder from './components/order/ViewOrder';
+import ServicesPage from './components/Services/ServicesPage';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function App() {
 
@@ -36,9 +39,11 @@ function App() {
 
         <Route element={<ProtectedRoutes/>}>
           <Route path='/dashboard' element={<AppLayout/>} />
+          <Route path='/services' element={<ServicesPage/>} />
           <Route path='/administrator/admin' element={<AdministratorLayout/>} />
           <Route path='/administrator/user' element={<UserAdministrator/>} />
           <Route path='/administrator/user/:id' element={<Asignation/>} />
+          <Route path='/orders/:id' element={<ViewOrder/>} />
         </Route>
         {/* Otras rutas protegidas pueden ir aquí */}
         <Route path='*' element={<NotFound/>} />

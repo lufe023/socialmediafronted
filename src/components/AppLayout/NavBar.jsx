@@ -63,11 +63,11 @@ const NavBar = () => {
     </li>
   </ul>
 </li>
-<li className="nav-item">
+{/* <li className="nav-item">
   <a className="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
     <i className="fas fa-th-large" />
   </a>
-</li>
+</li> */}
 
 
 
