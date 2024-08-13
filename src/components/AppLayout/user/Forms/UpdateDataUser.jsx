@@ -9,7 +9,8 @@ const UpdateDataUser = ({ updates, citizen = {}, getPeople }) => {
     firstName: citizen.firstName || '',
     lastName: citizen.lastName || '',
     phone: citizen.phone || '',
-    email: citizen.email || ''
+    email: citizen.email || '',
+    active: true
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -27,43 +28,71 @@ const UpdateDataUser = ({ updates, citizen = {}, getPeople }) => {
     setIsLoading(true);
     e.preventDefault();
 
-    axios.patch(`${import.meta.env.VITE_API_SERVER}/api/v1/users/${citizen.id}`, formData, getConfig())
-      .then((response) => {
-        getPeople();
-        setUpdating(false);
+    // Crear un objeto para los datos modificados
+    const modifiedData = {};
+    Object.keys(formData).forEach((key) => {
+        if (formData[key] !== citizen[key]) {
+            modifiedData[key] = formData[key];
+        }
+    });
+
+    // Verificar si hay campos modificados antes de hacer la solicitud
+    if (Object.keys(modifiedData).length > 0) {
+        axios.patch(`${import.meta.env.VITE_API_SERVER}/api/v1/users/${citizen.id}`, modifiedData, getConfig())
+            .then((response) => {
+                getPeople();
+                setUpdating(false);
+                setIsLoading(false);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Buen trabajo, hay que actualizar siempre!',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    toast: true,
+                    position: 'top-end',
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer);
+                        toast.addEventListener('mouseleave', Swal.resumeTimer);
+                    }
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+                setIsLoading(false);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Algo anda mal',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    toast: true,
+                    position: 'top-end',
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer);
+                        toast.addEventListener('mouseleave', Swal.resumeTimer);
+                    }
+                });
+            });
+    } else {
         setIsLoading(false);
         Swal.fire({
-          icon: 'success',
-          title: 'Buen trabajo, hay que actualizar siempre!',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          toast: true,
-          position: 'top-end',
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer);
-            toast.addEventListener('mouseleave', Swal.resumeTimer);
-          }
+            icon: 'info',
+            title: 'No se realizaron cambios',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            toast: true,
+            position: 'top-end',
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
+            }
         });
-      })
-      .catch((error) => {
-        console.log(error);
-        setIsLoading(false);
-        Swal.fire({
-          icon: 'error',
-          title: 'Algo anda mal',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          toast: true,
-          position: 'top-end',
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer);
-            toast.addEventListener('mouseleave', Swal.resumeTimer);
-          }
-        });
-      });
-  };
+    }
+};
+
+
 
   if (isLoading) {
     return (

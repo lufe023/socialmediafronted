@@ -5,37 +5,30 @@ import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import ServiceOrderCard from './ServiceOrderCard';
 import MiniCards from '../MiniCards';
+import OrderTable from './OrderTable';
+import PurchaseServiceCard from './PurchaseServiceCard';
 
-const ServiceOrderList = () => {
-    const [orders, setOrders] = useState([]);
+const ServiceOrderList = ({orders}) => {
 
-    const user = useSelector(state => state.userSlice);
-
-    useEffect(() => {
-        const fetchOrders = async () => {
-            try {
-                const URL = `${import.meta.env.VITE_API_SERVER}/api/v1/serviceOrders/${user.id}`;
-                const response = await axios.get(URL, getConfig());
-                setOrders(response.data);
-            } catch (error) {
-                console.error('Error fetching user orders:', error);
-                Swal.fire('Error', 'Hubo un problema al cargar las órdenes del usuario.', 'error');
-            }
-        };
-        if (user.id) {
-            fetchOrders();
-        }
-    }, [user.id]);
     return (
         <>
         
-            <MiniCards orders={orders} />
-        <div className="row">
+      
+  
+           
+            <OrderTable orders={orders}/>
+        
+           
+     
+        {/* <div className="row">
           
             {orders.map(order => (
                 <ServiceOrderCard key={order.id} order={order} />
             ))}
-        </div>
+            
+        </div> */}
+       
+
         </>
     );
 };

@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import getConfig from '../utils/getConfig';
 import { useSelector } from 'react-redux';
 
-const PurchaseServiceCard = () => {
+const PurchaseServiceCard = ({fetchOrders}) => {
     const user = useSelector(state => state.userSlice);
     const [services, setServices] = useState([]);
     const [categories, setCategories] = useState([]);

@@ -25,6 +25,9 @@ const LandingPage = () => {
           <a href="#" className="nav-link">Contactos</a>
         </li>
         <li className="nav-item">
+        <Link to="/services"  className="nav-link">Servicios</Link>
+        </li>
+        <li className="nav-item">
         <Link to="/dashboard"  className="nav-link">Dashboard</Link>
         </li>
     

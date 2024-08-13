@@ -7,7 +7,6 @@ const Aside = () => {
   const location = useLocation();
 
   // Check if any child route is active
-  const isActive = (path) => location.pathname.startsWith(path);
 
   return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
@@ -20,7 +19,7 @@ const Aside = () => {
             <img src={user?.picture} className="img-circle elevation-2" alt="User Image" />
           </div>
           <div className="info">
-            <a href="#" className="d-block">{user?.firstName}</a>
+            <Link to={`/me/${user.id}`} className="d-block">{user?.firstName}</Link>
           </div>
         </div>
         <div className="form-inline">
@@ -40,6 +39,12 @@ const Aside = () => {
               <NavLink to='/dashboard' className="nav-link">
                 <i className="nav-icon fas fa-tachometer-alt" />
                 <p>Panel Principal</p>
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to={`/me/${user.id}`} className="nav-link">
+              <i className="fas fa-user-tie nav-icon" />
+                <p>Perfil</p>
               </NavLink>
             </li>
             <li className="nav-item">

@@ -18,6 +18,8 @@ import AdministratorLayout from './components/Administrator/AdministratorLayout'
 import ViewOrder from './components/order/ViewOrder';
 import ServicesPage from './components/Services/ServicesPage';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import ProtectedAdmin from './components/Administrator/AdminUtils/ProtectedAdmin';
+import Profile from './components/AppLayout/user/Profile';
 
 function App() {
 
@@ -40,11 +42,16 @@ function App() {
         <Route element={<ProtectedRoutes/>}>
           <Route path='/dashboard' element={<AppLayout/>} />
           <Route path='/services' element={<ServicesPage/>} />
+          <Route path='/orders/:id' element={<ViewOrder/>} />
+          <Route path='/me/:id' element={<Profile/>} />
+        </Route>
+
+        <Route element={<ProtectedAdmin/>}>
           <Route path='/administrator/admin' element={<AdministratorLayout/>} />
           <Route path='/administrator/user' element={<UserAdministrator/>} />
           <Route path='/administrator/user/:id' element={<Asignation/>} />
-          <Route path='/orders/:id' element={<ViewOrder/>} />
         </Route>
+
         {/* Otras rutas protegidas pueden ir aquí */}
         <Route path='*' element={<NotFound/>} />
       </Routes>

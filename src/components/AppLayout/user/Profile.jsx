@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import getConfig from '../../utils/getConfig'
 import Aside from '../Aside'
 import Cargando from '../../utils/Cargando'
-import userDisable from './userDisable'
+
 import copy from 'clipboard-copy';
 import Swal from 'sweetalert2'
 import changeUserRole from './changeUserRole'
@@ -14,7 +14,7 @@ import FundTransactionForm from './FundTransactionForm'
 import TransactionsHistory from './TransactionsHistory'
 import getHistoryTransactions from './getHistoryTransactions'
 
-const Asignation = () => {
+const Profile = () => {
 
         const [people, setPeople] = useState()
         const [user, setUser] = useState()
@@ -84,12 +84,12 @@ const urlRecuperation =  `${import.meta.env.VITE_FRONT_DOMAIN}/#recoverypassword
         <div className="container-fluid">
       <div className="row mb-2">
       <div className="col-sm-6">
-        <h1>Administrar Usuario</h1>
+        <h1>Mi Perfil</h1>
       </div>
       <div className="col-sm-6">
         <ol className="breadcrumb float-sm-right">
           <li className="breadcrumb-item"><Link to='/administrator' >Usuarios</Link></li>
-          <li className="breadcrumb-item active">Administrar Usuario</li>
+          <li className="breadcrumb-item active">Perfil</li>
         </ol>
       </div>
     </div>
@@ -121,28 +121,12 @@ const urlRecuperation =  `${import.meta.env.VITE_FRONT_DOMAIN}/#recoverypassword
                 <b>Rol</b> <a className="float-right">{user?.user_role?.roleName}</a>
               </li>
               <li className="list-group-item">
-                
-                <b>Estado</b> 
-                {
-                  user.active?<a className="float-right">
-                    <button className='btn btn-success btn-xs'> Activado</button>
-                    </a>
-                  :<a className="float-right">
-                    <button className='btn btn-danger btn-xs'> Inactivo </button>
-                    
-                    </a> 
-                }
+              <Link to="/forgotPassword" className="btn btn-primary btn-block"><b>Restablecer Contraseña</b></Link>
               </li>
-              {
-                  user.active?
-              <button href="#" className="btn btn-danger btn-block" onClick={()=> (userDisable(user.id, false), getPeople())}><b>Desactivar</b></button>
-              :
-              <button href="#" className="btn btn-primary btn-block" onClick={()=> (userDisable(user.id, true), getPeople())}><b>Activar</b></button>
-                }
             </ul>
           </div>
         </div>
-        <FundTransactionForm userId={id} getPeople={getPeople} setTransactions={setTransactions}/>
+        
       </div>
       {/* /.col */}
       <div className="col-md-9">
@@ -189,83 +173,7 @@ const urlRecuperation =  `${import.meta.env.VITE_FRONT_DOMAIN}/#recoverypassword
     </div>
 :""
 }
-  <div className="card card-default">
-  <div className="card-header">
-    <h3 className="card-title">Roles de Usuario</h3>
-    <div className="card-tools">
-      <button type="button" className="btn btn-tool" data-card-widget="collapse">
-        <i className="fas fa-minus" />
-      </button>
-      <button type="button" className="btn btn-tool" data-card-widget="remove">
-        <i className="fas fa-times" />
-      </button>
-    </div>
-  </div>
-  {/* /.card-header */}
-  <div className="card-body">
 
-    <div className="row">
-  <div className="col-sm-6">
-    {/* Select multiple*/}
-    <div className="form-group">
-      <label>Cambiar Rango</label>
-      <select className="form-control"
-      value={selectedRole}
-      onChange={(e) => setSelectedRole(e.target.value)}
-      size={5}
-      >
-        <option value={1}>Cliente</option>
-        <option value={2}>Administrador</option>
-      </select>
-    </div>
-    <button className='btn btn-primary' onClick={()=> changeUserRole(id, selectedRole, getPeople)}>Asignar Rol</button>
-  </div>
-  <div className="col-sm-6">
-  <div className="form-group">
-  <label>Descripción</label>
- <div id="accordion">
-  <div className="card card-primary">
-    <div className="card-header">
-      <h4 className="card-title w-100">
-        <a className="d-block w-100 collapsed" data-toggle="collapse" href="#collapseOne">
-        <i className="fas fa-user" /> Cliente (Nivel 1)
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" className="collapse" data-parent="#accordion">
-      <div className="card-body">
-      Este usuario solo tendrá a acceso y funciones disponible para cliente, compra de servicios, activar servicios
-      </div>
-    </div>
-  </div>
-
-  <div className="card card-success">
-    <div className="card-header">
-      <h4 className="card-title w-100">
-        <a className="d-block w-100" data-toggle="collapse" href="#collapseThree">
-        <i className="fas fa-user-cog"/> Administrador (Nivel 2)
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" className="collapse" data-parent="#accordion">
-      <div className="card-body">
-      El Administrador ostenta el rango más alto en el sistema tiene privilegio para administrar otros usuarios y ver areas que un usuario de menor rango puede ver.
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-  
-  </div>
-</div>
-
-  </div>
-
-  <div className="card-footer">
-  
-  </div>
-</div>
 <TransactionsHistory transactions={transactions}/>
 </div>
     
@@ -287,4 +195,4 @@ const urlRecuperation =  `${import.meta.env.VITE_FRONT_DOMAIN}/#recoverypassword
   )
 }
 
-export default Asignation
+export default Profile

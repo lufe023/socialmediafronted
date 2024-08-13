@@ -17,8 +17,6 @@ const AppLayout = () => {
             <div className='container-fluid'>
               <ContentPath/>
               <EditServiceCard/>
-
-
             </div>
             </div>
           </div>

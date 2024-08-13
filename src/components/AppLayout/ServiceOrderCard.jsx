@@ -9,7 +9,6 @@ const ServiceOrderCard = ({ order }) => {
         Twitter: 'fab fa-twitter',
         // Añade más mapeos de iconos según sea necesario
     };
-console.log(order)
     const getColorClass = (status) => {
 
         switch (status) {
@@ -26,7 +25,7 @@ console.log(order)
         }
     };
 
-    const copiarUrlLink = () => {
+        const copiarUrlLink = () => {
         copy(order.link)
           .then(() => {
             const Toast = Swal.mixin({

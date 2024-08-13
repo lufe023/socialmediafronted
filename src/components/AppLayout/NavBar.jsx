@@ -25,6 +25,9 @@ const NavBar = () => {
   <li className="nav-item">
         <a className="nav-link" data-widget="pushmenu" href="#" role="button"><i className="fas fa-bars"></i></a>
       </li>
+      <li className="nav-item">
+        <Link to="/services"  className="nav-link">Servicios</Link>
+        </li>
         <li className="nav-item">
         <Link to="/dashboard"  className="nav-link">Dashboard</Link>
         </li>    
@@ -58,8 +61,8 @@ const NavBar = () => {
     </li>
     {/* Menu Footer*/}
     <li className="user-footer">
-      <a href="#" className="btn btn-default btn-flat">Profile</a>
-      <Link to='/logout' className="btn btn-default btn-flat float-right">Sign out</Link>
+      <Link to={`/me/${user.id}`} className="btn btn-default btn-flat">Perfil</Link>
+      <Link to='/logout' className="btn btn-default btn-flat float-right">Cerrar Sesión</Link>
     </li>
   </ul>
 </li>
