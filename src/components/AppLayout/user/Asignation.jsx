@@ -218,7 +218,7 @@ const urlRecuperation =  `${import.meta.env.VITE_FRONT_DOMAIN}/#recoverypassword
         <option value={2}>Administrador</option>
       </select>
     </div>
-    <button className='btn btn-primary' onClick={()=> changeUserRole(id, selectedRole, getPeople)}>Asignar Rol</button>
+    <button className='btn btn-primary' onClick={()=> (changeUserRole(id, selectedRole), getPeople())}>Asignar Rol</button>
   </div>
   <div className="col-sm-6">
   <div className="form-group">

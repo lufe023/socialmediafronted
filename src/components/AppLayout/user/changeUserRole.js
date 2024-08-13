@@ -2,16 +2,13 @@ import Swal from "sweetalert2";
 import getConfig from "../../utils/getConfig";
 import axios from "axios";
 
-const changeUserRole = (id, newRoleId, getPeople) => {
-    console.log(id); //5fc417ad-1431-4427-9f66-01e194f66703
-
+const changeUserRole = (id, newRoleId) => {
     const URL = `${
         import.meta.env.VITE_API_SERVER
     }/api/v1/users/role/changeUserRole`;
     axios
         .patch(URL, { id, newRoleId }, getConfig())
         .then((res) => {
-            getPeople();
             const Toast = Swal.mixin({
                 toast: true,
                 position: "top-end",

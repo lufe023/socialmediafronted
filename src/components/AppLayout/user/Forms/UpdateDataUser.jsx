@@ -104,7 +104,7 @@ const UpdateDataUser = ({ updates, citizen = {}, getPeople }) => {
     return (
       <div className={updating ? 'card-body bg-warning' : 'card-body'}>
         <div style={{ textAlign: "center", padding: "5px" }}>
-          {updating && <h4><i className="fas fa-info-circle"></i> Hay cambios pendiente por guardar </h4>}
+          {updating && <h4><i className="fas fa-info-circle"></i> Hay cambios pendiente por guardar <span style={{fontSize:"14px", color:"red"}}> * No debe dejar nada en blanco</span></h4>}
         </div>
         <form className="form-horizontal" onSubmit={handleSubmit} onChange={() => setUpdating(true)}>
           <div className="form-group row">
