@@ -1,11 +1,10 @@
-// components/PurchaseServiceCard.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import getConfig from '../utils/getConfig';
 import { useSelector } from 'react-redux';
 
-const PurchaseServiceCard = ({fetchOrders}) => {
+const PurchaseServiceCard = () => {
     const user = useSelector(state => state.userSlice);
     const [services, setServices] = useState([]);
     const [categories, setCategories] = useState([]);
@@ -16,48 +15,51 @@ const PurchaseServiceCard = ({fetchOrders}) => {
     const [servicePrice, setServicePrice] = useState(0);
     const [totalCost, setTotalCost] = useState(0);
 
+
     useEffect(() => {
-        // Obtener categorías cuando el componente se monta
-        const URL = `${import.meta.env.VITE_API_SERVER}/api/v1/services/categories`;
-        axios
-            .get(URL, getConfig())
-            .then(response => {
-                setCategories(response.data);
-            })
-            .catch(error => {
+        const fetchCategories = async () => {
+            try {
+                const { data } = await axios.get(`${import.meta.env.VITE_API_SERVER}/api/v1/services/categories`, getConfig());
+                setCategories(data);
+            } catch (error) {
                 console.error('Error cargando las categorías:', error);
                 Swal.fire('Error', 'Hubo un problema al cargar las categorías.', 'error');
-            });
+            }
+        };
+
+        fetchCategories();
     }, []);
 
     useEffect(() => {
-        // Obtener servicios cuando se selecciona una categoría
-        if (selectedCategory) {
-            const URL = `${import.meta.env.VITE_API_SERVER}/api/v1/services/category/${selectedCategory}`;
-            axios
-                .get(URL, getConfig())
-                .then(response => {
-                    setServices(response.data);
-                })
-                .catch(error => {
-                    console.error('Error cargando los servicios:', error);
-                    Swal.fire('Error', 'Hubo un problema al cargar los servicios.', 'error');
-                });
-        }
+        const fetchServices = async () => {
+            if (!selectedCategory) return;
+
+            try {
+                const { data } = await axios.get(`${import.meta.env.VITE_API_SERVER}/api/v1/services/category/${selectedCategory}`, getConfig());
+                setServices(data);
+            } catch (error) {
+                console.error('Error cargando los servicios:', error);
+                Swal.fire('Error', 'Hubo un problema al cargar los servicios.', 'error');
+            }
+        };
+
+        fetchServices();
     }, [selectedCategory]);
 
     useEffect(() => {
-        // Calcular el costo total cuando cambian el servicio o la cantidad
         const selected = services.find(service => service.id === Number(selectedService));
-
-        if (selected) {
+        if (selected && quantity > 0) {
+            const calculatedPrice = selected.price * quantity;
             setServicePrice(selected.price);
-            setTotalCost(selected.price * quantity);
+            setTotalCost(calculatedPrice);
+        } else {
+            setServicePrice(0);
+            setTotalCost(0);
         }
     }, [selectedService, quantity, services]);
 
-    const handlePurchase = () => {
-        if (!selectedService || isNaN(quantity) || quantity <= 0 || !link) {
+    const handlePurchase = async () => {
+        if (!selectedService || quantity <= 0 || !link.trim()) {
             Swal.fire('Error', 'Por favor, seleccione un servicio, ingrese una cantidad válida y un enlace.', 'error');
             return;
         }
@@ -67,34 +69,34 @@ const PurchaseServiceCard = ({fetchOrders}) => {
             return;
         }
 
-        Swal.fire({
-            title: 'Confirmar Compra',
-            text: `Está a punto de comprar el servicio con ID ${selectedService} por ${quantity} unidades, lo cual costará $${totalCost}. ¿Desea continuar?`,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, comprar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const URL = `${import.meta.env.VITE_API_SERVER}/api/v1/serviceOrders/buy`;
-                axios
-                    .post(URL, {
-                        userId: user.id,
-                        serviceId: Number(selectedService), // Asegúrate de convertir a número
-                        quantity,
-                        link
-                    }, getConfig())
-                    .then(response => {
-                        Swal.fire('Éxito', 'La compra se realizó con éxito.', 'success');
-                    })
-                    .catch(error => {
-                        console.error('Error realizando la compra:', error);
-                        Swal.fire('Error', 'Hubo un problema al realizar la compra. Inténtelo de nuevo.', 'error');
-                    });
+        try {
+            const confirmResult = await Swal.fire({
+                title: 'Confirmar Compra',
+                text: `Está a punto de comprar el servicio con ID ${selectedService} por ${quantity} unidades, lo cual costará $${totalCost}. ¿Desea continuar?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, comprar'
+            });
+
+            if (confirmResult.isConfirmed) {
+                await axios.post(`${import.meta.env.VITE_API_SERVER}/api/v1/serviceOrders/buy`, {
+                    userId: user.id,
+                    serviceId: Number(selectedService),
+                    quantity,
+                    link
+                }, getConfig());
+
+                Swal.fire('Éxito', 'La compra se realizó con éxito.', 'success');
             }
-        });
+        } catch (error) {
+            console.error('Error realizando la compra:', error);
+            Swal.fire('Error', 'Hubo un problema al realizar la compra. Inténtelo de nuevo.', 'error');
+        }
     };
+
+    const minQuantity = services.find(service => service.id === Number(selectedService))?.minQuantity;
 
     return (
         <div className="card">
@@ -135,15 +137,17 @@ const PurchaseServiceCard = ({fetchOrders}) => {
                     </select>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="quantityInput">Cantidad:</label>
+                       
+                    <label htmlFor="quantityInput">Cantidad 
+                        <span style={{fontWeight:300, display:"block"}}>{minQuantity?`Este servicio requiere un mínimo de : ${minQuantity}`:""}</span> </label>
                     <input
                         type="number"
                         id="quantityInput"
-                        className="form-control"
+                        className={`form-control ${quantity>0 && quantity<minQuantity?"bg-gradient-danger":""}`}
                         placeholder="Ingrese la cantidad"
                         min="1"
                         value={quantity}
-                        onChange={(e) => setQuantity(e.target.value)}
+                        onChange={(e) => setQuantity(Number(e.target.value))}
                     />
                 </div>
                 <div className="form-group">
@@ -163,7 +167,7 @@ const PurchaseServiceCard = ({fetchOrders}) => {
                 </div>
                 <div className="form-group">
                     <label>Fondos Disponibles:</label>
-                    <p>${user?.fondos?.balance.toFixed(2)}</p>
+                    <p>${user?.fondos?.balance?.toFixed(2)}</p>
                 </div>
                 <div className="form-group">
                     <label>Fondos Restantes:</label>
@@ -173,6 +177,7 @@ const PurchaseServiceCard = ({fetchOrders}) => {
                     id="buyButton"
                     className="btn btn-primary"
                     onClick={handlePurchase}
+                    disabled={!selectedService || quantity <= 0 || totalCost === 0}
                 >
                     Comprar
                 </button>

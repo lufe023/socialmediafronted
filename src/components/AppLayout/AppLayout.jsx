@@ -8,6 +8,7 @@ import ServiceOrderList from './ServiceOrderList';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import getConfig from '../utils/getConfig';
+import Advertisement from './Advertisement';
 
 const AppLayout = () => {
 
@@ -51,9 +52,10 @@ const AppLayout = () => {
             <MiniCards orders={orders} />
             <div className='row'>
               <div className='col-md-4'>
-                <PurchaseServiceCard fetchOrders={fetchOrders}/>
+                <PurchaseServiceCard/>
               </div>
               <div className='col-md-8'>
+             <Advertisement/>
              <ServiceOrderList orders={orders}/>
              </div>
 
