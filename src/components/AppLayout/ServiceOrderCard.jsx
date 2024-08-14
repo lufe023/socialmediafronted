@@ -82,7 +82,7 @@ const ServiceOrderCard = ({ order }) => {
                         </li>
                         <li className="nav-item">
                             <span className="nav-link">
-                                Costo Total: <span className="float-right badge">{order.totalCost.toFixed(2)}</span>
+                                Costo Total: <span className="float-right badge">{order.customerPrice.toFixed(2)}</span>
                             </span>
                         </li>
                         <li className="nav-item">

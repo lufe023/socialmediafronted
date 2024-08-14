@@ -9,6 +9,8 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import getConfig from '../utils/getConfig';
 import Advertisement from './Advertisement';
+import ServicesPage from '../Services/ServicesPage';
+import ServiceByCategory from '../Services/ServiceByCategory';
 
 const AppLayout = () => {
 
@@ -60,8 +62,9 @@ const AppLayout = () => {
              </div>
 
             </div>
-
-
+            <div style={{marginTop:"100px"}}>
+          <ServiceByCategory/>
+          </div>
             </div>
             </section>
           </div>

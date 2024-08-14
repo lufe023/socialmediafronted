@@ -15,7 +15,6 @@ const PurchaseServiceCard = () => {
     const [servicePrice, setServicePrice] = useState(0);
     const [totalCost, setTotalCost] = useState(0);
 
-
     useEffect(() => {
         const fetchCategories = async () => {
             try {
@@ -72,7 +71,7 @@ const PurchaseServiceCard = () => {
         try {
             const confirmResult = await Swal.fire({
                 title: 'Confirmar Compra',
-                text: `Está a punto de comprar el servicio con ID ${selectedService} por ${quantity} unidades, lo cual costará $${totalCost}. ¿Desea continuar?`,
+                text: `Está a punto de comprar ${quantity} unidad(es) del servicio, lo cual costará $${totalCost}. de tus creditos ¿Desea continuar?`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -137,7 +136,6 @@ const PurchaseServiceCard = () => {
                     </select>
                 </div>
                 <div className="form-group">
-                       
                     <label htmlFor="quantityInput">Cantidad 
                         <span style={{fontWeight:300, display:"block"}}>{minQuantity?`Este servicio requiere un mínimo de : ${minQuantity}`:""}</span> </label>
                     <input

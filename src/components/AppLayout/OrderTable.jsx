@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const OrderTable = ({orders}) => {
+
   return (
     <div className="card">
   <div className="card-header border-transparent bg-dark">
@@ -22,6 +23,7 @@ const OrderTable = ({orders}) => {
           <tr>
             <th>Red</th>
             <th>Servicio</th>
+            <th>Costo</th>
             <th>Estado</th>
             <th>Inició</th>
           </tr>
@@ -33,6 +35,7 @@ const OrderTable = ({orders}) => {
                 <Link href="#">{order.serviceDetails.parentCategory}</Link>
                 </td>
             <td>{order.serviceDetails.name}</td>
+            <td>{order.customerPrice}</td>
             <td><span className="badge badge-success">{order.externalStatus}</span></td>
             <td>
               <div className="sparkbar" data-color="#00a65a" data-height={20}>{order.startCount}</div>

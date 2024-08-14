@@ -21,6 +21,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import ProtectedAdmin from './components/Administrator/AdminUtils/ProtectedAdmin';
 import Profile from './components/AppLayout/user/Profile';
 import ServiceDetails from './components/Services/ServiceDetails';
+import BuyingService from './components/Services/BuyingService';
 
 function App() {
 
@@ -43,7 +44,7 @@ function App() {
         <Route element={<ProtectedRoutes/>}>
           <Route path='/dashboard' element={<AppLayout/>} />
           <Route path='/services' element={<ServicesPage/>} />
-         
+          <Route path="/service/buying/:id" element={<BuyingService />} />
           <Route path='/orders/:id' element={<ViewOrder/>} />
           <Route path='/me/:id' element={<Profile/>} />
         </Route>
