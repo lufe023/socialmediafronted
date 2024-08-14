@@ -20,8 +20,7 @@ const iconMap = {
     // Agrega más iconos según sea necesario
 };
 
-const ServiceByCategory = () => {
-
+const ServiceByCategory = ({admin = false}) => {
     const [services, setServices] = useState([]);
     const [categories, setCategories] = useState([]);
     const [searchText, setSearchText] = useState('');
@@ -81,7 +80,7 @@ const ServiceByCategory = () => {
                 <section className='content'>
                     <div className='container-fluid'>
                       
-                        <h2 className="text-center display-4">Buscar Servicio</h2>
+                        <h2 className="text-center display-4">{!admin?'Buscar':'Editar'} Servicio</h2>
                         <div className="row">
                             <div className="col-md-8 offset-md-2 p-5">
                                 <div className="input-group">
@@ -139,7 +138,7 @@ const ServiceByCategory = () => {
                                                             <tr key={service.id}>
                                                                 <td>{idx + 1}.</td>
                                                                 <td>
-                                                                <Link to={`/service/buying/${service.id}`}>
+                                                                <Link to={`/service/${!admin?'buying/':''} ${service.id}`}>
                                                                         {service.name}
                                                                     </Link>
                                                                 </td>
@@ -186,7 +185,7 @@ const ServiceByCategory = () => {
                                                             <tr key={service.id}>
                                                                 <td>{idx + 1}.</td>
                                                                 <td>
-                                                                    <Link to={`/service/buying/${service.id}`}>
+                                                                <Link to={`/service/${!admin?'buying/':''} ${service.id}`}>
                                                                         {service.name}
                                                                     </Link>
                                                                 </td>

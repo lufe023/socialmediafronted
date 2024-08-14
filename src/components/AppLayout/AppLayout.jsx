@@ -63,7 +63,7 @@ const AppLayout = () => {
 
             </div>
             <div style={{marginTop:"100px"}}>
-          <ServiceByCategory/>
+          <ServiceByCategory admin={false}/>
           </div>
             </div>
             </section>

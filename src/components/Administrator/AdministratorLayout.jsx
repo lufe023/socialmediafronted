@@ -4,6 +4,7 @@ import Aside from '../AppLayout/Aside';
 import ContentPath from '../AppLayout/ContentPath';
 import MiniCards from '../MiniCards';
 import EditServiceCard from './EditServiceCard';
+import ServiceByCategory from '../Services/ServiceByCategory';
 
 
 
@@ -16,7 +17,7 @@ const AppLayout = () => {
             <div className='content'>
             <div className='container-fluid'>
               <ContentPath/>
-              <EditServiceCard/>
+              <ServiceByCategory admin={true}/>
             </div>
             </div>
           </div>
