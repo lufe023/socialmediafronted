@@ -80,7 +80,6 @@ const UserDashBoard = () => {
   </div>
   {/* /.card-header */}
   <div className="card-body table-responsive p-0" style={{height: 300}}>
- 
     <table className="table table-head-fixed text-nowrap">
       <thead>
         <tr>
@@ -113,7 +112,7 @@ const UserDashBoard = () => {
         }
       </tbody>
     </table>
-    {users.length==0?<div style={{width:"100%", display:"flex", justifyContent:"center"}}><Spinner/></div>:""}
+    {users?.length==0?<div style={{width:"100%", display:"flex", justifyContent:"center"}}><Spinner/></div>:""}
   </div>
 </div>
 </div>
