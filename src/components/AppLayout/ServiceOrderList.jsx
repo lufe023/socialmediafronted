@@ -6,11 +6,7 @@ const ServiceOrderList = ({orders}) => {
 
     return (
         <>
-            {
-                
-            }
             <OrderTable orders={orders}/>
-
         </>
     );
 };

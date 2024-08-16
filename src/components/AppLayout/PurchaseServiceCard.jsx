@@ -104,7 +104,7 @@ const PurchaseServiceCard = () => {
             </div>
             <div className="card-body">
                 <div className="form-group">
-                    <label htmlFor="categorySelect">Seleccione una Categoría:</label>
+                    <label htmlFor="categorySelect">Seleccione Una Red Social:</label>
                     <select
                         id="categorySelect"
                         className="form-control"

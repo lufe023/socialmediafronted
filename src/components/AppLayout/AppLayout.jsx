@@ -43,7 +43,6 @@ const AppLayout = () => {
         <div className="wrapper control-sidebar-slide-open">
           <NavBar/>
           <Aside/>
-   
           <div className="content-wrapper">
             <section className='content'>
             <div className='container-fluid'>
@@ -57,10 +56,9 @@ const AppLayout = () => {
                 <PurchaseServiceCard/>
               </div>
               <div className='col-md-8'>
-             <Advertisement/>
-             <ServiceOrderList orders={orders}/>
-             </div>
-
+              <Advertisement/>
+              <ServiceOrderList orders={orders}/>
+              </div>
             </div>
             <div style={{marginTop:"100px"}}>
           <ServiceByCategory admin={false}/>

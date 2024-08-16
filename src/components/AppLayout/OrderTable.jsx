@@ -1,7 +1,45 @@
 import React from 'react'
+import copy from 'clipboard-copy';
+import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom'
 
 const OrderTable = ({orders}) => {
+  const iconMap = {
+    Facebook: 'fab fa-facebook',
+    Instagram: 'fab fa-instagram',
+    Twitter: 'fab fa-twitter',
+    LinkedIn: 'fab fa-linkedin',
+    TikTok: 'fab fa-tiktok',
+    Spotify: 'fab fa-spotify',
+    Pinterest: 'fab fa-pinterest',
+    SoundCloud: 'fab fa-soundcloud',
+    // Agrega más iconos según sea necesario
+};
+
+  const copiarUrlLink = (linkTocopy) => {
+    copy(linkTocopy)
+      .then(() => {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'URL copiada al porta papeles'
+        })
+      })
+      .catch((err) => {
+        console.error('Error al copiar al portapapeles: ', err);
+      });
+  };
 
   return (
     <div className="card">
@@ -11,9 +49,6 @@ const OrderTable = ({orders}) => {
       <button type="button" className="btn btn-tool" data-card-widget="collapse">
         <i className="fas fa-minus" />
       </button>
-      <button type="button" className="btn btn-tool" data-card-widget="remove">
-        <i className="fas fa-times" />
-      </button>
     </div>
   </div>
   <div className="card-body p-0" style={{display: 'block'}}>
@@ -21,24 +56,48 @@ const OrderTable = ({orders}) => {
       <table className="table m-0">
         <thead>
           <tr>
-            <th>Red</th>
             <th>Servicio</th>
-            <th>Costo</th>
-            <th>Estado</th>
-            <th>Inició</th>
+            <th style={{minWidth:"200px"}}>Detalles </th>
+            
+            <th style={{minWidth:"170px"}}>Opciones</th>
           </tr>
         </thead>
         <tbody>
             {orders.map((order, idx) => (
           <tr key={idx}>
             <td>
-                <Link href="#">{order.serviceDetails.parentCategory}</Link>
-                </td>
-            <td>{order.serviceDetails.name}</td>
-            <td>{order.customerPrice}</td>
-            <td><span className="badge badge-success">{order.externalStatus}</span></td>
+            <i className={`${iconMap[order.serviceDetails.parentCategory] || 'fas fa-info'}`} style={{ fontSize: '40px', marginRight: '10px' }}></i>
+              {order.serviceDetails.name}
+              
+              </td>
             <td>
-              <div className="sparkbar" data-color="#00a65a" data-height={20}>{order.startCount}</div>
+              <ul>
+                <li>Red: {order.serviceDetails.parentCategory}</li>
+                <li>
+                Estado: {order.externalStatus}
+                </li>
+                <li>
+                Costo Total: {order.customerPrice}
+                </li>
+                <li>
+                  Inició en: <span> {order.startCount} </span>
+                </li>
+              </ul>
+            
+            </td>
+            <td>
+           <div className="btn-group-vertical">
+  <a type="button" target='blank' href={order.link} className="btn btn-default" style={{textAlign:"left"}}><i className="fas fa-link"></i> Ir al Link</a>
+  <button style={{textAlign:"left"}} type="button" className="btn btn-default" onClick={()=>copiarUrlLink(order.link)}><i className="far fa-copy"/> Copiar Link</button>
+  <Link 
+  style={{textAlign:"left", minWidth:"130px"}}
+    to={`/service/buying/${order.service.id}?url=${encodeURIComponent(order.link)}&cantidad=${order.quantity}`} 
+    className="btn btn-default">
+    <i className="fas fa-shopping-cart" /> Recontratar
+</Link>
+</div>
+
+
             </td>
           </tr>
             ))}

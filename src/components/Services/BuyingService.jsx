@@ -8,6 +8,7 @@ import Cargando from '../utils/Cargando'; // Componente de carga
 import NavBar from '../AppLayout/NavBar';
 import Aside from '../AppLayout/Aside';
 import ContentPath from '../AppLayout/ContentPath';
+import { useLocation } from 'react-router-dom';
 
 const BuyingService = () => {
     const { id } = useParams();
@@ -15,9 +16,15 @@ const BuyingService = () => {
     const [service, setService] = useState(null);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
-    const [quantity, setQuantity] = useState(0);
-    const [link, setLink] = useState('');
     const [totalCost, setTotalCost] = useState(0);
+    const location = useLocation();
+    const query = new URLSearchParams(location.search);
+    const url = query.get('url');
+    const cantidad = query.get('cantidad')
+    
+    const [quantity, setQuantity] = useState(Number(cantidad) || '');
+    const [link, setLink] = useState(url || '');
+
 
     // Fetch service details
     useEffect(() => {

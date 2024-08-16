@@ -12,8 +12,6 @@ const getUserbyId = (dispatch) => {
                 dispatch(setUserData(res.data));
             })
             .catch((err) => console.log(err));
-    } else {
-        console.log("su token espiró");
     }
 };
 
