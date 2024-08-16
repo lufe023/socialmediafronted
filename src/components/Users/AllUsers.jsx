@@ -28,7 +28,7 @@ const AllUsers = ({users, userDisable, getAllUsers, currentPage}) => {
           
         </div>
         <div className="product-info">
-          <Link to={`/mypeople/${user.id}`} className="product-title">{`${user.firstName} ${user.lastName}`}
+          <Link to={`/administrator/user/${user.id}`} className="product-title">{`${user.firstName} ${user.lastName}`}
           <span className={`badge float-right ${user.user_role.roleName=='Administrator'?'badge-warning':user.user_role.roleName=='Super Admin'?'badge-danger':user.user_role.roleName=='Delegado'?'badge-info':'badge-success'}`}>{user.user_role.roleName}</span>
           
           </Link>
