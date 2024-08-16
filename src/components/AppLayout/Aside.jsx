@@ -64,19 +64,27 @@ const Aside = () => {
                   </p>
                 </NavLink>
               <ul className="nav nav-treeview">
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <NavLink to='/administrator/user'className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'}>
                     <i className="fas fa-users nav-icon" />
+                    <p>Usuarios</p>
+                  </NavLink>
+                </li> */}
+               
+                <li className="nav-item">
+                  <NavLink to='/users' className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'}>
+                    <i className="nav-icon fas fa-users" />
                     <p>Usuarios</p>
                   </NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink to='/administrator/admin' className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'}>
-                    <i className="nav-icon fas fa-users" />
-                    <p>Administrador</p>
+                    <i className="nav-icon  fas fa-edit" />
+                    <p>Editar Servicios</p>
                   </NavLink>
                 </li>
               </ul>
+              
             </li>
           </ul>
         </nav>

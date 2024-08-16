@@ -22,6 +22,7 @@ import ProtectedAdmin from './components/Administrator/AdminUtils/ProtectedAdmin
 import Profile from './components/AppLayout/user/Profile';
 import ServiceDetails from './components/Services/ServiceDetails';
 import BuyingService from './components/Services/BuyingService';
+import UserDashBoard from './components/Users/UserDashBoard';
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
           <Route path='/administrator/admin' element={<AdministratorLayout/>} />
           <Route path='/administrator/user' element={<UserAdministrator/>} />
           <Route path='/administrator/user/:id' element={<Asignation/>} />
+          <Route path='/users' element={<UserDashBoard/>} />
         </Route>
 
         {/* Otras rutas protegidas pueden ir aquí */}

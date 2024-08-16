@@ -140,7 +140,7 @@ const ServicesPage = () => {
                                                             <tr key={service.id}>
                                                                 <td>{idx + 1}.</td>
                                                                 <td>
-                                                                    <Link to={`/service/${service.id}`}>
+                                                                    <Link to={`/service/buying/${service.id}`}>
                                                                         {service.name}
                                                                     </Link>
                                                                 </td>
