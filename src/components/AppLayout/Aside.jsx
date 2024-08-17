@@ -16,7 +16,7 @@ const Aside = () => {
       <div className="sidebar">
         <div className="user-panel mt-3 pb-3 mb-3 d-flex">
           <div className="image">
-            <img src={user?.picture} className="img-circle elevation-2" alt="User Image" />
+            <img src={user.picture?user.picture:"dist/img/nopeople.jpg"} className="img-circle elevation-2" alt="User Image" />
           </div>
           <div className="info">
             <Link to={`/me/${user.id}`} className="d-block">{user?.firstName}</Link>

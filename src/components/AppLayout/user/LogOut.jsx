@@ -1,12 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import { clearUserData } from '../../../store/slices/user.slice';
 
 const LogOut = () => {
+    const dispatch = useDispatch();
+    const [loggedOut, setLoggedOut] = useState(false);
 
-    localStorage.clear();
+    useEffect(() => {
+        // Limpiar el localStorage y el estado de Redux
+        localStorage.removeItem('token');
+        dispatch(clearUserData());
 
-    return  <Navigate to='/' />
+        // Indicar que el proceso de logout se ha completado
+        setLoggedOut(true);
+    }, [dispatch]);
 
+    // Redirigir después de haber hecho logout
+    if (loggedOut) {
+        return <Navigate to="/" />;
+    }
+
+    // Mostrar un componente de carga o nada mientras se procesa el logout
+    return null;
 }
 
-export default LogOut
+export default LogOut;

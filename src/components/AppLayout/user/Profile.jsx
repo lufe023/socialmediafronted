@@ -24,7 +24,7 @@ const Profile = () => {
         const [transactions, setTransactions] = useState([]);
         
         const getPeople = ()=>{
-          const URL = `${import.meta.env.VITE_API_SERVER}/api/v1/users/${id}`
+          const URL = `${import.meta.env.VITE_API_SERVER}/api/v1/users/me`
             axios.get(URL, getConfig())
             .then(res => {
             setPeople(res.data)

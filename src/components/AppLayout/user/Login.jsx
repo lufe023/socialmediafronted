@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import getUserbyId from './getMyUser';
 
 const Login = () => {
   const [isLogged, setIsLogged] = useState(localStorage.getItem('token'));
@@ -11,6 +13,7 @@ const Login = () => {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -41,8 +44,11 @@ const Login = () => {
     axios.post(URL, data)
       .then(res => {
         localStorage.setItem('token', res.data.token);
+        getUserbyId(dispatch);
+   
         setIsLogged(true);
         setLoader(false);
+
         Swal.fire({
           icon: 'success',
           title: 'Bienvenido',

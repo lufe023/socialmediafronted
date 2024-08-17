@@ -50,7 +50,7 @@ return (
         results?.map(user=>
          
                 <div  key={user?.id} className="card-comment">
-                <img className="img-circle img-sm" src={user?.picture} alt="User Image" />
+                <img className="img-circle img-sm" src={user.picture?user.picture:"dist/img/nopeople.jpg"} alt="User Image" />
                 <div className="comment-text">
                 
                     <span className="username">
@@ -68,19 +68,6 @@ return (
 )
 }
 </div>
-
- {/* <div className="user-block list-select-user">
-                            <div>
-                            </div>
-                                <div>
-                                <img className="img-circle img-bordered-sm" src={user?.picture} alt="user image" />
-                            <span className="username">
-                            <Link to={`/administrator/user/${user?.id}`}>{user?.firstName} {user?.lastName}</Link>
-                            </span>
-                            <span className="description">{user?.email} |  {user?.user_role.roleName}</span>
-                            </div>
-                            </div> */}
-
     </div>
     </div>
     </div>
