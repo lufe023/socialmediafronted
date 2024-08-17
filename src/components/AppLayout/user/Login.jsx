@@ -80,7 +80,7 @@ const Login = () => {
       <div className="login-box" style={{ margin: '0 auto 40px auto' }}>
         <div className="card card-outline card-primary">
           <div className="card-header text-center">
-            <a href="/" className="h1"><b>SYSTEM</b></a>
+            <a href="/" className="h1"><b>Necio</b></a>
           </div>
           <div className="card-body">
             <p className="login-box-msg">Inicia sesión</p>
@@ -134,7 +134,7 @@ const Login = () => {
               <Link to='/forgotPassword'>Olvidé la contraseña</Link>
             </p>
             <p className="mb-0">
-              <Link to='/preregister' className="text-center">Crear usuario</Link>
+              <Link to='/signup' className="text-center">Crear usuario</Link>
             </p>
           </div>
         </div>
