@@ -34,7 +34,7 @@ const NavBar = () => {
         <li className="nav-item dropdown user-menu">
           <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
             <img
-              src={user?.picture ? user.picture : "/dist/img/noprofilepic.jpg"}
+              src={user?.picture ? user.picture : "/img/noprofilepic.jpg"}
               className="user-image img-circle elevation-2"
               alt="User Image"
             />
@@ -44,7 +44,7 @@ const NavBar = () => {
             {/* User image */}
             <li className="user-header bg-primary">
               <img
-                src={user?.picture ? user.picture : "/dist/img/noprofilepic.jpg"}
+                src={user?.picture ? user.picture : "/img/noprofilepic.jpg"}
                 className="img-circle elevation-2"
                 alt="User Image"
               />
