@@ -35,13 +35,13 @@ const NavBar = () => {
     <ul className='navbar-nav ml-auto' style={{marginRight:"20px"}}>
     <li className="nav-item dropdown user-menu">
   <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-  <img src={user.picture?user.picture:"dist/img/nopeople.jpg"} className="user-image img-circle elevation-2" alt="User Image" />
+  <img src={user.picture?user.picture:"dist/img/noprofilepic.jpg"} className="user-image img-circle elevation-2" alt="User Image" />
     <span className="d-none d-md-inline">{user?.firstName}</span>
   </a>
   <ul className="dropdown-menu dropdown-menu-lg dropdown-menu-right" style={{left: 'inherit', right: 0}}>
     {/* User image */}
     <li className="user-header bg-primary">
-      <img src={user.picture?user.picture:"dist/img/nopeople.jpg"} className="img-circle elevation-2" alt="User Image" />
+      <img src={user.picture?user.picture:"dist/img/noprofilepic.jpg"} className="img-circle elevation-2" alt="User Image" />
       <p>
         {user?.firstName + " "+ user?.lastName}
         <small>Miembro desde {formattedDate}</small>

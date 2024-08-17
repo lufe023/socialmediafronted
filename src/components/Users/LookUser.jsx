@@ -50,7 +50,7 @@ return (
         results?.map(user=>
          
                 <div  key={user?.id} className="card-comment">
-                <img className="img-circle img-sm" src={user.picture?user.picture:"dist/img/nopeople.jpg"} alt="User Image" />
+                <img className="img-circle img-sm" src={user.picture?user.picture:"dist/img/noprofilepic.jpg"} alt="User Image" />
                 <div className="comment-text">
                 
                     <span className="username">
@@ -60,11 +60,6 @@ return (
                     {user?.email} {user.active?<button className='btn btn-success btn-xs'>Activado</button>:<button className='btn btn-danger btn-xs'>Desactivado</button>}
                 </div>
                 </div>
-
-
-
-                           
-            
 )
 }
 </div>
