@@ -46,7 +46,7 @@ const Login = () => {
         localStorage.setItem('token', res.data.token);
         getUserbyId(dispatch);
    
-        setIsLogged(true);
+        setIsLogged(true); 
         setLoader(false);
 
         Swal.fire({

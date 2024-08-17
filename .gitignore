@@ -1,3 +1,9 @@
+# Ignora la carpeta dist en la raíz del proyecto
+/dist
+
+# No ignores la carpeta dist dentro de public
+!public/dist
+
 # Logs
 logs
 *.log
@@ -7,8 +13,8 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Ignorar node_modules y otras carpetas generadas
 node_modules
-dist
 dist-ssr
 *.local
 
@@ -23,4 +29,5 @@ dist-ssr
 *.sln
 *.sw?
 
+# Variables de entorno
 .env
