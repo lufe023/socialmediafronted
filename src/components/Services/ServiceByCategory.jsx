@@ -41,7 +41,9 @@ const ServiceByCategory = ({admin = false}) => {
     useEffect(() => {
         const fetchServices = async () => {
             const promises = categories?.map(category => {
-                const URL = `${import.meta.env.VITE_API_SERVER}/api/v1/services/category/${category}`;
+
+                
+                const URL = `${import.meta.env.VITE_API_SERVER}/api/v1/services${admin?'/admin/':'/'}category/${category}`;
                 return axios.get(URL, getConfig());
             });
 

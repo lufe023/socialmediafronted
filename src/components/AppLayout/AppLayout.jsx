@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import getConfig from '../utils/getConfig';
 import Advertisement from './Advertisement';
-import ServicesPage from '../Services/ServicesPage';
 import ServiceByCategory from '../Services/ServiceByCategory';
 
 const AppLayout = () => {

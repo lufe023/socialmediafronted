@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import getConfig from '../utils/getConfig';
 import NavBar from '../AppLayout/NavBar';
@@ -8,6 +9,7 @@ import Aside from '../AppLayout/Aside';
 import ContentPath from '../AppLayout/ContentPath';
 import PurchaseSimulator from './PurchaseSimulator';
 import Spinner from '../utils/Spiner';
+import deleteService from './deleteService';
 
 const ServiceDetails = () => {
     const { id } = useParams();
@@ -28,6 +30,8 @@ const ServiceDetails = () => {
         cancel: false,
         published: false,
     });
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const URL = `${import.meta.env.VITE_API_SERVER}/api/v1/services/${id}`;
@@ -64,6 +68,14 @@ const ServiceDetails = () => {
                 Swal.fire('Error', 'Hubo un problema al actualizar el servicio.', 'error');
             });
     };
+
+const handleDelete = async () => {
+    const isDeleted = await deleteService(id);
+    if (isDeleted) {
+        navigate('/administrator/admin');
+    }
+};
+
 
     if (!service) return (
     <div style={{width:"100%", height:"500px", alignItems: "center", display:"flex"}}>
@@ -249,6 +261,28 @@ const ServiceDetails = () => {
         </div>
         <div className="col-md-4">
         <PurchaseSimulator service={service} userFunds={1000} />
+        <div className="info-box mb-3 bg-warning">
+<span class="info-box-icon">
+<i className="fas fa-trash-alt" />
+
+    </span>
+<div class="info-box-content">
+Antes de eliminar un servicio recuerde que esta acción no se puede revertir 
+<button 
+        className="btn btn-danger mt-3" 
+        onClick={handleDelete}
+    >
+        Eliminar Servicio
+    </button>
+</div>
+
+</div>
+       {/* <button 
+                                            className="btn btn-danger mt-3" 
+                                            onClick={handleDelete}
+                                        >
+                                            Eliminar Servicio
+                                        </button> */}
         </div>
         </div>
         </div>
