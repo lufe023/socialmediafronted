@@ -105,7 +105,7 @@ const urlRecuperation =  `${import.meta.env.VITE_FRONT_DOMAIN}/#recoverypassword
         <div className="card card-primary card-outline">
           <div className="card-body box-profile">
             <div className="text-center">
-            <img className="profile-user-img img-fluid img-circle" src={user?.picture ? user.picture : "/img/noprofilepic.jpg"} alt="User profile picture" />
+            {/* <img className="profile-user-img img-fluid img-circle" src={user?.picture ? user.picture : "/img/noprofilepic.jpg"} alt="User profile picture" /> */}
             </div>
             <h3 className="profile-username text-center">{people?.firstName} {people?.lastName}</h3>
             <p className="text-muted text-center">{people?.nickname}</p>
