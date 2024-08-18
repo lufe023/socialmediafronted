@@ -114,7 +114,6 @@ const urlRecuperation =  `${import.meta.env.VITE_FRONT_DOMAIN}/#recoverypassword
                 <b>Correo</b> <a className="float-right">{user?.email}</a>
               </li>
               <li className="list-group-item">
-  
                 <b>Fondos</b> <a className="float-right">{formattedBalance}</a>
               </li>
               <li className="list-group-item">
