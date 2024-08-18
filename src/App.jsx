@@ -19,7 +19,7 @@ import ViewOrder from './components/order/ViewOrder';
 import ServicesPage from './components/Services/ServicesPage';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import ProtectedAdmin from './components/Administrator/AdminUtils/ProtectedAdmin';
-import Profile from './components/AppLayout/user/Profile';
+import UserProfile from './components/AppLayout/user/UserProfile';
 import ServiceDetails from './components/Services/ServiceDetails';
 import BuyingService from './components/Services/BuyingService';
 import UserDashBoard from './components/Users/UserDashBoard';
@@ -47,7 +47,7 @@ function App() {
           <Route path='/services' element={<ServicesPage/>} />
           <Route path="/service/buying/:id" element={<BuyingService />} />
           <Route path='/orders/:id' element={<ViewOrder/>} />
-          <Route path='/me/:id' element={<Profile/>} />
+          <Route path='/me/:id' element={<UserProfile/>} />
         </Route>
 
         <Route element={<ProtectedAdmin/>}>

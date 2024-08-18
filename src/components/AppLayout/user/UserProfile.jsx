@@ -14,7 +14,7 @@ import FundTransactionForm from './FundTransactionForm'
 import TransactionsHistory from './TransactionsHistory'
 import getHistoryTransactions from './getHistoryTransactions'
 
-const Profile = () => {
+const UserProfile = () => {
 
         const [people, setPeople] = useState()
         const [user, setUser] = useState()
@@ -194,4 +194,4 @@ const urlRecuperation =  `${import.meta.env.VITE_FRONT_DOMAIN}/#recoverypassword
   )
 }
 
-export default Profile
+export default UserProfile
