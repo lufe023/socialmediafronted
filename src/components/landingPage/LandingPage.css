@@ -1,0 +1,13 @@
+.hero {
+    background-image: url('../../assets/hero-bg-2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgb(0, 39, 80); /* Color con opacidad */
+    background-blend-mode: overlay; /* O usar otros modos como 'multiply', 'screen', etc. */
+    padding: 80px 0;
+    box-sizing: border-box;
+    width: 100%;
+    color: white;
+    min-height: 100vh; /* Asegúrate de que el contenedor tenga suficiente altura */
+}

@@ -61,6 +61,7 @@ function App() {
         {/* Otras rutas protegidas pueden ir aquí */}
         <Route path='*' element={<NotFound/>} />
       </Routes>
+  
     </div>
   );
 }

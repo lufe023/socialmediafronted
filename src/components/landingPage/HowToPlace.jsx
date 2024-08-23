@@ -1,9 +1,10 @@
 import React from 'react'
-
+import './Howto.css'
 const HowToPlace = () => {
   return (
     <>
-   <div className="container"><div className="header-with-text " style={{marginTop:"80px"}}>
+   <div className="container" style={{width:"90%"}}>
+    <div className="header-with-text " style={{marginTop:"80px"}}>
     <div className="row">
       <div className="col-12">
         <div className="text-block__title">
@@ -96,9 +97,7 @@ const HowToPlace = () => {
 </div>
 </div>
 
-<div className="col-lg-12 bg-dark" style={{height:"400px", marginTop:"200px"}}>
 
-</div>
 </>
   )
 }

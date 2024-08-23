@@ -1,0 +1,17 @@
+.footer a {
+    text-decoration: none;
+  }
+  
+ 
+  .footer ul {
+    padding-left: 0;
+  }
+  
+  .footer ul li {
+    display: inline;
+  }
+  
+  .footer .list-unstyled {
+    margin-bottom: 0;
+  }
+  

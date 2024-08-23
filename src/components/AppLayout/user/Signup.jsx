@@ -50,7 +50,7 @@ const Signup = () => {
       <div className="register-box">
         <div className="card card-outline card-primary">
           <div className="card-header text-center">
-            <a href="/" className="h1"><b>Admin</b>LTE</a>
+            <a href="/" className="h1"> <b>Necio</b>Shop</a>
           </div>
           <div className="card-body">
             <p className="login-box-msg">Registrar una nueva cuenta</p>

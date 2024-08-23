@@ -1,0 +1,32 @@
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .carousel-custom .carousel-inner {
+    display: flex;
+    overflow: hidden;
+  }
+  
+  .carousel-custom .carousel-item {
+    flex: 1 0 auto;
+    width: 25%; /* Ajusta el ancho para mostrar el número deseado de ítems */
+    transition: transform 0.5s ease;
+  }
+  
+  .carousel-item-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    padding: 20px;
+  }
+  
+  .bg-primary { background-color: #007bff; }
+  .bg-gradient-danger { background: linear-gradient(to right, #ff6f6f, #ff3d3d); }
+  .bg-info { background-color: #17a2b8; }
+  .bg-gradient-warning { background: linear-gradient(to right, #ffeb3b, #ffc107); }
+  .bg-danger { background-color: #dc3545; }
+  .bg-success { background-color: #28a745; }
+  .bg-dark { background-color: #343a40; }
+  
