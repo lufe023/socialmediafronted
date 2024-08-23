@@ -9,7 +9,7 @@ import getUserbyId from '../getMyUser';
 import Spinner from '../../../utils/Spiner';
 
 
-const LoginForm = ({setIsLogged}) => {
+const LoginForm = ({setIsLogged, isLogged}) => {
 
     const [message, setMessage] = useState('');
     const [loader, setLoader] = useState(false);
@@ -25,7 +25,7 @@ const LoginForm = ({setIsLogged}) => {
       .then(res => {
         localStorage.setItem('token', res.data.token);
         getUserbyId(dispatch);
-   
+        
         setIsLogged(true); 
         setLoader(false);
 
@@ -37,6 +37,8 @@ const LoginForm = ({setIsLogged}) => {
           timer: 3000,
           timerProgressBar: true,
         });
+
+          navigate('/dashboard');        
       })
       .catch(err => {
         setMessage(err.response.data.message);
