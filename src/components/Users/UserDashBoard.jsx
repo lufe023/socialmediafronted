@@ -77,8 +77,8 @@ const UserDashBoard = () => {
         </div>
             <div className="col-sm-6">
             <ol className="breadcrumb float-sm-right">
-            <li className="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li className="breadcrumb-item"><Link to='/users' >Colaboradores</Link></li>
+            <li className="breadcrumb-item"><Link to={"/dashboard"}>Dashboard</Link></li>
+            <li className="breadcrumb-item"><Link>Usuarios</Link></li>
             </ol>
             </div>
       </div>

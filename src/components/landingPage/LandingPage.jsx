@@ -6,7 +6,6 @@ import './LandingPage.css'
 import SocialMediaCarousel from './SocialMediaCarousel';
 import WhatsAppChatBubble from '../WhatsAppChatBubble';
 import LoginForm from '../AppLayout/user/Forms/LoginForm';
-
 import robot from "../../assets/technical-support.png"
 import Footer from './Footer';
 
@@ -78,10 +77,10 @@ const LandingPage = () => {
 <div className="row hero"   >
   <div className="col-md-6 order-2 p-4" style={{display:"flex", justifyContent:"flex-end", alignItems:"center"}}>
     {/* <img src={`${backgroundImage}`}/> */}
-    <article style={{maxWidth:"600px"}}>
+    <article className='Articulo'>
   <h1>Aumenta tu presencia en redes sociales</h1>
   <p className="lead mt-4">
-    ¿Quieres hacer crecer tus redes sociales y mejorar tu visibilidad online sin gastar una fortuna? Estás en el lugar correcto. Ofrecemos la posibilidad de aumentar tus seguidores y likes de manera rápida y económica. Con nuestras estrategias automatizadas y herramientas avanzadas, podrás conectar con miles de seguidores y llevar tu marca al siguiente nivel a un precio que no podrás creer.
+    <span>¿Quieres hacer crecer tus redes sociales y mejorar tu visibilidad online sin gastar una fortuna? </span>Estás en el lugar correcto. Ofrecemos la posibilidad de aumentar tus seguidores y likes de manera rápida y económica. Con nuestras estrategias automatizadas y herramientas avanzadas, podrás conectar con miles de seguidores y llevar tu marca al siguiente nivel a un precio que no podrás creer.
   </p>
   <a href="https://wa.me/message/YMFN5X4CFQF2K1" target='_blanck' className="btn btn-primary btn-lg mt-3 mx-auto">
     ¡Contáctanos ahora!

@@ -25,32 +25,47 @@ const LoginForm = ({setIsLogged, isLogged}) => {
       .then(res => {
         localStorage.setItem('token', res.data.token);
         getUserbyId(dispatch);
-        
         setIsLogged(true); 
         setLoader(false);
 
-        Swal.fire({
-          icon: 'success',
-          title: 'Bienvenido',
+        const Toast = Swal.mixin({
+          toast: true,
           position: 'top-end',
           showConfirmButton: false,
           timer: 3000,
           timerProgressBar: true,
-        });
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+
+        Toast.fire({
+          icon: 'success',
+          title: `Bienvenido`
+        })
 
           navigate('/dashboard');        
       })
       .catch(err => {
         setMessage(err.response.data.message);
         setLoader(false);
-        Swal.fire({
-          icon: 'error',
-          title: 'Algo anda mal',
+        const Toast = Swal.mixin({
+          toast: true,
           position: 'top-end',
           showConfirmButton: false,
           timer: 3000,
           timerProgressBar: true,
-        });
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        Toast.fire({
+          icon: 'error',
+          title: `Algo Anda mal: ${err.response.data.message}`
+        })
+
       });
     reset({ password: '' });
   };
@@ -103,10 +118,10 @@ const LoginForm = ({setIsLogged, isLogged}) => {
                 {loader ? "Cargando" : ''}
                 <div className="error">
                   {message &&
-                  <div className="alert alert-danger ">
-  {message}
-</div>
-}
+                  <p className='text-danger'>
+                  {message}
+                </p>
+                    }
 
                 </div>
               </div>
