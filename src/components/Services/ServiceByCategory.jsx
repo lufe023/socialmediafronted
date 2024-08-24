@@ -76,12 +76,9 @@ const ServiceByCategory = ({admin = false}) => {
     const firstHalfCategories = categories.slice(0, midIndex);
     const secondHalfCategories = categories.slice(midIndex);
     return (
-       
-           
-           
+
                 <section className='content'>
                     <div className='container-fluid'>
-                      
                         <h2 className="text-center display-4">{!admin?'Buscar':'Editar'} Servicio</h2>
                         <div className="row">
                             <div className="col-md-8 offset-md-2 p-5">
