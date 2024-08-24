@@ -26,13 +26,13 @@ const Footer = () => {
           <div className="col-md-4">
             <h5 className="text-uppercase">Contacto</h5>
             <p>Correo electrónico: <a href="mailto:info@necioshop.com" className="text-light link-underline link-underline-opacity-0">info@necioshop.com</a></p>
-            <p>Teléfono: <a href="tel:+1234567890" className="text-light link-underline link-underline-opacity-0">+123 456 7890</a></p>
+            
             <p>Síguenos en:</p>
-            <ul className="list-unstyled d-flex">
+            {/* <ul className="list-unstyled d-flex m">
               <li className="me-3"><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-light link-underline link-underline-opacity-0">Facebook</a></li>
               <li className="me-3"><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-light link-underline link-underline-opacity-0">Twitter</a></li>
               <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-light link-underline link-underline-opacity-0">Instagram</a></li>
-            </ul>
+            </ul> */}
           </div>
         </div>
         <div className="row">
@@ -42,7 +42,7 @@ const Footer = () => {
         </div>
         <div className="row">
           <div className="col-12 text-center mt-4">
-            <p><a href="mailto:lufe023@gmail.com" className="text-light link-underline link-underline-opacity-0">Powered by lufe023</a></p>
+            
           </div>
         </div>
       </div>
