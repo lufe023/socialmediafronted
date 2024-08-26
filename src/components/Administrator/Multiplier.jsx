@@ -3,6 +3,7 @@ import "./Slider.css"; // Asegúrate de crear este archivo CSS
 import axios from "axios";
 import getConfig from "../utils/getConfig";
 import Swal from "sweetalert2"; // Si usas SweetAlert2 para notificaciones
+import Spinner from '../../components/utils/Spiner'
 
 const Slider = ({ min, max, step, value, onChange }) => {
   const handleChange = (e) => {
@@ -11,7 +12,16 @@ const Slider = ({ min, max, step, value, onChange }) => {
 
   return (
     <div className="slider-container">
-      <input
+      <div className="form-group">
+  <label htmlFor="customRange1">Perilla Multiplicadora</label>
+  <input type="range" className="custom-range" id="customRange1" 
+   min={min}
+   max={max}
+   step={step}
+   value={value}
+   onChange={handleChange}/>
+</div>
+      {/* <input
         type="range"
         min={min}
         max={max}
@@ -19,8 +29,8 @@ const Slider = ({ min, max, step, value, onChange }) => {
         value={value}
         onChange={handleChange}
         className="slider"
-      />
-      <div className="slider-value">{value}%</div>
+      /> */}
+      <div className={`slider-value ${value<0?'bg-danger':''} `}>{value}%</div>
     </div>
   );
 };
@@ -33,6 +43,7 @@ const Multiplier = () => {
   const [availableServices, setAvailableServices] = useState([]);
   const [sliderValue, setSliderValue] = useState(0);
   const [published, setPublished] = useState(true);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const URL = `${import.meta.env.VITE_API_SERVER}/api/v1/services/categories`;
@@ -146,9 +157,11 @@ const Multiplier = () => {
     
     try {
       const URL = `${import.meta.env.VITE_API_SERVER}/api/v1/services/edit/group`;
+      setLoading(true)
       const response = await axios.patch(URL, { updatedServices }, getConfig());
-
+      
       Swal.fire("Éxito", "Servicios actualizados correctamente.", "success");
+      setLoading(false)
     } catch (error) {
       console.error('Error:', error.response.data);
       Swal.fire("Error", "Hubo un problema al actualizar los servicios.", "error");
@@ -163,185 +176,218 @@ const Multiplier = () => {
         <div className="card-header">
           <h3 className="card-title">Multiplicador de Servicios</h3>
         </div>
+        {loading?
+          <div className="card-body" style={{width:"100%", minHeight:"300px",display:"flex", justifyContent:"center", alignItems:"center"}}>
+            <div style={{scale:"2"}}>
 
-        <div className="card-body">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="alert alert-info alert-dismissible">
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="alert"
-                  aria-hidden="true"
-                >
-                  ×
-                </button>
-                <h5>
-                  <i className="icon fas fa-info" /> Importante!
-                </h5>
-                <p>
-                  1. Este multiplicador funciona sumándole el porcentaje
-                  seleccionado a los precios base.
-                </p>
-                <p>
-                  2. Este multiplicador toma como referencia el precio base que
-                  tienen los servicios en <b>jqaw.org</b>, es decir si en
-                  jqaw.org el servicio <i>
-                    <b>Seguidores de Instagram</b>
-                  </i>{" "}
-                  vale 1USD pero en la plataforma el servicio shop vale 5USD y
-                  usted multiplica por 10%, el servicio <i>
-                    <b>Seguidores de Instagram</b>
-                  </i>{" "}
-                  valdrá 1.1USD.
-                </p>
-                <p>
-                  3. Este multiplicador también publica o despublica los
-                  servicios en la parte de activador, como es una función grupal
-                  se aplicarán los cambios a todos los seleccionados.
-                </p>
-              </div>
+            <Spinner/>
             </div>
-          </div>
-          <div className="row">
-            <div className="col-md-5">
-              <h5>Servicios Disponibles</h5>
-              {Object.keys(groupedServices).map((category, index) => (
-                <div className="card card-primary card-outline collapsed-card" key={index}>
-                  <div className="card-header">
-                    <h3 className="card-title">
-                      {category}
-                    </h3>
-                    <div className="card-tools">
-                      <button type="button" className="btn btn-tool" data-card-widget="collapse">
-                        <i className="fas fa-plus"></i>
+      
+            </div>:
+                <div className="card-body">
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="alert alert-info alert-dismissible">
+                      <button
+                        type="button"
+                        className="close"
+                        data-dismiss="alert"
+                        aria-hidden="true"
+                      >
+                        ×
+                      </button>
+                      <h5>
+                        <i className="icon fas fa-info" /> Importante!
+                      </h5>
+                      <p>
+                        1. Este multiplicador funciona sumándole el porcentaje
+                        seleccionado a los precios base.
+                      </p>
+                      <p>
+                        2. Este multiplicador toma como referencia el precio base que
+                        tienen los servicios en <b>jqaw.org</b>, es decir si en
+                        jqaw.org el servicio <i>
+                          <b>Seguidores de Instagram</b>
+                        </i>{" "}
+                        vale 1USD pero en la plataforma el servicio shop vale 5USD y
+                        usted multiplica por 10%, el servicio <i>
+                          <b>Seguidores de Instagram</b>
+                        </i>{" "}
+                        valdrá 1.1USD.
+                      </p>
+                      <p>
+                        3. Este multiplicador también publica o despublica los
+                        servicios en la parte de activador, como es una función grupal
+                        se aplicarán los cambios a todos los seleccionados.
+                      </p>
+                      <p>
+                        4. Si el precio final de algún servicio es establecido al mismo precio que está establecido en el API ORIGINAL, en el área de selección grupal se tornará de color
+                         <span className="bg-warning"> amarillo. </span> Esto no impedirá que se guarden los cambios, es solo una advertencia 
+                      </p>
+                      <p>
+                        5. Si el precio final de algún servicio es establecido menor al precio que está establecido en el API ORIGINAL, en el área de selección grupal se tornará de color 
+                        <span className="bg-danger"> Rojo. </span> Esto no impedirá que se guarden los cambios, es solo una advertencia 
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-5">
+                    <h5>Servicios Disponibles</h5>
+                    {Object.keys(groupedServices).map((category, index) => (
+                      <div className="card card-primary card-outline collapsed-card" key={index}>
+                        <div className="card-header">
+                          <h3 className="card-title">
+                            {category}
+                          </h3>
+                          <div className="card-tools">
+                            <button type="button" className="btn btn-tool" data-card-widget="collapse">
+                              <i className="fas fa-plus"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div className="card-body p-0">
+                          <ul className="list-group">
+                            {groupedServices[category].map((service, idx) => (
+                              <li key={idx} className="list-group-item">
+                                {service.name}
+                                <br /> jqawPrice: {service.jqawPrice}
+                                <br /> Precio Actual a cliente: {service.price}
+                                <br /> Publicado: {service.published ? "Sí" : "No"}
+                                <div className="custom-control custom-switch">
+                                  <input
+                                    type="checkbox"
+                                    className="custom-control-input"
+                                    id={`switch-${service.id}`}
+                                    checked={service.isPublished}
+                                    onChange={() => handleTogglePublished(service)}
+                                  />
+                                  <label
+                                    className="custom-control-label"
+                                    htmlFor={`switch-${service.id}`}
+                                  >
+                                    {service.isPublished ? "Publicado" : "No Publicado"}
+                                  </label>
+                                </div>
+                                <button
+                                  className="btn btn-primary btn-sm float-right"
+                                  onClick={() => handleSelectService(service)}
+                                >
+                                  Agregar
+                                </button>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+      
+                  <div className="col-md-2 d-flex justify-content-center align-items-center p-4">
+                    <div className="arrows">
+                      <button
+                        className="btn btn-outline-primary"
+                        onClick={handleDeselectAll}
+                      >
+                        &lt;&lt;
+                      </button>
+                      <button
+                        className="btn btn-outline-primary"
+                        onClick={handleSelectAll}
+                      >
+                        &gt;&gt;
                       </button>
                     </div>
                   </div>
-                  <div className="card-body p-0">
+      
+                  <div className="col-md-5">
+                    <h5>Servicios Seleccionados</h5>
                     <ul className="list-group">
-                      {groupedServices[category].map((service, idx) => (
-                        <li key={idx} className="list-group-item">
+                      {selectedServices.map((service, idx) => (
+                        <li key={idx} className={`list-group-item ${service.jqawPrice * (1 + sliderValue / 100)<service.jqawPrice?'bg-danger':''} ${service.jqawPrice * (1 + sliderValue / 100)==service.jqawPrice?'bg-warning':''}`}>
                           {service.name}
                           <br /> jqawPrice: {service.jqawPrice}
                           <br /> Precio Actual a cliente: {service.price}
-                          <br /> Publicado: {service.published ? "Sí" : "No"}
+                          <br /> Publicado: {service.isPublished ? "Sí" : "No"}
+                          <br /> Precio quedará en: {service.jqawPrice * (1 + sliderValue / 100)} despues del calculo del {sliderValue} %
                           <div className="custom-control custom-switch">
                             <input
                               type="checkbox"
                               className="custom-control-input"
-                              id={`switch-${service.id}`}
+                              id={`switch-selected-${service.id}`}
                               checked={service.isPublished}
                               onChange={() => handleTogglePublished(service)}
                             />
                             <label
                               className="custom-control-label"
-                              htmlFor={`switch-${service.id}`}
+                              htmlFor={`switch-selected-${service.id}`}
                             >
                               {service.isPublished ? "Publicado" : "No Publicado"}
                             </label>
+                            
                           </div>
                           <button
-                            className="btn btn-primary btn-sm float-right"
-                            onClick={() => handleSelectService(service)}
+                            className="btn btn-danger btn-sm float-right mx-1"
+                            onClick={() => handleDeselectService(service)}
                           >
-                            Agregar
+                            Quitar
                           </button>
                         </li>
                       ))}
                     </ul>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            <div className="col-md-2 d-flex justify-content-center align-items-center p-4">
-              <div className="arrows">
-                <button
-                  className="btn btn-outline-primary"
-                  onClick={handleDeselectAll}
-                >
-                  &lt;&lt;
-                </button>
-                <button
-                  className="btn btn-outline-primary"
-                  onClick={handleSelectAll}
-                >
-                  &gt;&gt;
-                </button>
-              </div>
-            </div>
-
-            <div className="col-md-5">
-              <h5>Servicios Seleccionados</h5>
-              <ul className="list-group">
-                {selectedServices.map((service, idx) => (
-                  <li key={idx} className="list-group-item">
-                    {service.name}
-                    <br /> jqawPrice: {service.jqawPrice}
-                    <br /> Precio Actual a cliente: {service.price}
-                    <br /> Publicado: {service.isPublished ? "Sí" : "No"}
-                    <br /> Precio quedará en: {service.jqawPrice * (1 + sliderValue / 100)} despues del calculo del {sliderValue} %
-                    <div className="custom-control custom-switch">
-                      <input
-                        type="checkbox"
-                        className="custom-control-input"
-                        id={`switch-selected-${service.id}`}
-                        checked={service.isPublished}
-                        onChange={() => handleTogglePublished(service)}
-                      />
-                      <label
-                        className="custom-control-label"
-                        htmlFor={`switch-selected-${service.id}`}
-                      >
-                        {service.isPublished ? "Publicado" : "No Publicado"}
-                      </label>
-
-                      
-                    </div>
-                   
-                    <button
-                      className="btn btn-warning btn-sm float-right mx-1"
-                      onClick={() => handleDeselectService(service)}
-                    >
-                      Eliminar
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-md-12">
-              <Slider
-                min={0}
-                max={200}
-                step={1}
-                value={sliderValue}
-                onChange={setSliderValue}
-              />
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-md-12 mt-2">
-              <button
-                className="btn btn-primary float-right"
-                onClick={handleGroupTogglePublished}
-              >
-                {published ? "Despublicar Todos" : "Publicar Todos"}
-              </button>
-              <button
-                className="btn btn-primary float-right mx-2"
-                onClick={handleSubmit}
-                disabled={!selectedServices.length}
-              >
-                Guardar Cambios
-              </button>
-            </div>
-          </div>
+      
+                    <h3>Multiplicador</h3>
+                <div className="row">
+                  <div className="col-md-12">
+                    <Slider
+                      min={-500}
+                      max={500}
+                      step={1}
+                      value={sliderValue}
+                      onChange={setSliderValue}
+                    />
+                  </div>
+                  <div className="col-md-12">
+      
+      <div className="input-group">
+        <input type="number" className="form-control" fdprocessedid="rx8i1"
+        min={-500}
+        max={500}
+        name="multiplayerInput"
+        value={sliderValue}
+        onChange={(e) => setSliderValue(Number(e.target.value))}  
+        />
+        <div className="input-group-append">
+          <span className="input-group-text">%</span>
         </div>
+      </div>
+      
+                  </div>
+                </div>
+      
+                <div className="row">
+                  <div className="col-md-12 mt-2">
+                    <button
+                      className="btn btn-primary float-right"
+                      onClick={handleGroupTogglePublished}
+                    >
+                      {published ? "Despublicar Todos" : "Publicar Todos"}
+                    </button>
+                    <button
+                      className="btn btn-primary float-right mx-2"
+                      onClick={handleSubmit}
+                      disabled={!selectedServices.length}
+                    >
+                      Guardar Cambios
+                    </button>
+                  </div>
+                </div>
+              </div>
+      }
+    
+    
       </div>
     </div>
   );
