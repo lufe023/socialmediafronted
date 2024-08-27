@@ -28,11 +28,11 @@ const Footer = () => {
             <p>Correo electrónico: <a href="mailto:info@necioshop.com" className="text-light link-underline link-underline-opacity-0">info@necioshop.com</a></p>
             
             <p>Síguenos en:</p>
-            {/* <ul className="list-unstyled d-flex m">
-              <li className="me-3"><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-light link-underline link-underline-opacity-0">Facebook</a></li>
-              <li className="me-3"><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-light link-underline link-underline-opacity-0">Twitter</a></li>
-              <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-light link-underline link-underline-opacity-0">Instagram</a></li>
-            </ul> */}
+            <ul className="list-unstyled d-flex m">
+              {/* <li className="me-3"><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-light link-underline link-underline-opacity-0">Facebook</a></li>
+              <li className="me-3"><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-light link-underline link-underline-opacity-0">Twitter</a></li> */}
+              <li><a href="https://www.instagram.com/necioshop" target="_blank" rel="noopener noreferrer" className="text-light link-underline link-underline-opacity-0">Instagram: @necioshop</a></li>
+            </ul>
           </div>
         </div>
         <div className="row">
