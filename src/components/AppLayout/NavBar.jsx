@@ -24,9 +24,6 @@ const NavBar = () => {
           <a className="nav-link" data-widget="pushmenu" href="#" role="button"><i className="fas fa-bars"></i></a>
         </li>
         <li className="nav-item">
-          <Link to="/services" className="nav-link">Servicios</Link>
-        </li>
-        <li className="nav-item">
           <Link to="/dashboard" className="nav-link">Dashboard</Link>
         </li>
         <li className="nav-item">
