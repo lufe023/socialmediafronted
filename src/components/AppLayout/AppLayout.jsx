@@ -3,13 +3,13 @@ import Aside from './Aside';
 import NavBar from './NavBar';
 import MiniCards from '../MiniCards';
 import ContentPath from './ContentPath';
-import PurchaseServiceCard from './PurchaseServiceCard';
 import ServiceOrderList from './ServiceOrderList';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import getConfig from '../utils/getConfig';
 import Advertisement from './Advertisement';
 import ServiceByCategory from '../Services/ServiceByCategory';
+import PurchaseOriginalService from './PurchaseOriginalService';
 
 const AppLayout = () => {
 
@@ -52,7 +52,8 @@ const AppLayout = () => {
             <MiniCards orders={orders} />
             <div className='row'>
               <div className='col-md-4'>
-                <PurchaseServiceCard/>
+                {/* <PurchaseServiceCard/> */}
+                <PurchaseOriginalService/>
               </div>
               <div className='col-md-8'>
               <Advertisement/>

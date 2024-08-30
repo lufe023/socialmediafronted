@@ -23,6 +23,7 @@ import UserProfile from './components/AppLayout/user/UserProfile';
 import ServiceDetails from './components/Services/ServiceDetails';
 import BuyingService from './components/Services/BuyingService';
 import UserDashBoard from './components/Users/UserDashBoard';
+import Audit from './components/AppLayout/Audit/Audit';
 
 function App() {
 
@@ -56,6 +57,7 @@ function App() {
           <Route path='/administrator/user' element={<UserAdministrator/>} />
           <Route path='/administrator/user/:id' element={<Asignation/>} />
           <Route path='/users' element={<UserDashBoard/>} />
+          <Route path='/audit' element={<Audit/>} />
         </Route>
 
         {/* Otras rutas protegidas pueden ir aquí */}

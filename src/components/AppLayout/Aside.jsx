@@ -11,7 +11,7 @@ const Aside = () => {
   return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
       <Link to='/' className="brand-link">
-        <span className="brand-text font-weight-light">Social Media Project</span>
+        <span className="brand-text font-weight-light">Necio Shop</span>
       </Link>
       <div className="sidebar">
         <div className="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -70,7 +70,6 @@ const Aside = () => {
                     <p>Usuarios</p>
                   </NavLink>
                 </li> */}
-               
                 <li className="nav-item">
                   <NavLink to='/users' className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'}>
                     <i className="nav-icon fas fa-users" />
@@ -80,9 +79,15 @@ const Aside = () => {
                 <li className="nav-item">
                   <NavLink to='/administrator/admin' className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'}>
                     <i className="nav-icon  fas fa-edit" />
-                    <p>Editar Servicios</p>
+                    <p>Configuración</p>
                   </NavLink>
                 </li>
+                {/* <li className="nav-item">
+                  <NavLink to='/audit' className={({isActive}) => isActive ? 'nav-link active' : 'nav-link'}>
+                    <i className="nav-icon  fas fa-edit" />
+                    <p>Auditoria</p>
+                  </NavLink>
+                </li> */}
               </ul>
               
             </li>

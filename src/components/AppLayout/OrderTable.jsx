@@ -66,13 +66,10 @@ const OrderTable = ({orders}) => {
             {orders.map((order, idx) => (
           <tr key={idx}>
             <td>
-            <i className={`${iconMap[order.serviceDetails.parentCategory] || 'fas fa-info'}`} style={{ fontSize: '40px', marginRight: '10px' }}></i>
-              {order.serviceDetails.name}
-              
+              {order.serviceDescription}
               </td>
             <td>
               <ul>
-                <li>Red: {order.serviceDetails.parentCategory}</li>
                 <li>
                 Estado: {order.externalStatus}
                 </li>
@@ -82,6 +79,7 @@ const OrderTable = ({orders}) => {
                 <li>
                   Inició en: <span> {order.startCount} </span>
                 </li>
+                <li>Cantidad: {order.quantity}</li>
               </ul>
             
             </td>
@@ -91,7 +89,7 @@ const OrderTable = ({orders}) => {
   <button style={{textAlign:"left"}} type="button" className="btn btn-default" onClick={()=>copiarUrlLink(order.link)}><i className="far fa-copy"/> Copiar Link</button>
   <Link 
   style={{textAlign:"left", minWidth:"130px"}}
-    to={`/service/buying/${order.service.id}?url=${encodeURIComponent(order.link)}&cantidad=${order.quantity}`} 
+    to={`/service/buying/${order.serviceId}?url=${encodeURIComponent(order.link)}&cantidad=${order.quantity}`} 
     className="btn btn-default">
     <i className="fas fa-shopping-cart" /> Recontratar
 </Link>

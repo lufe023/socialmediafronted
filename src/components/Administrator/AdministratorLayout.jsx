@@ -6,6 +6,7 @@ import MiniCards from '../MiniCards';
 import EditServiceCard from './EditServiceCard';
 import ServiceByCategory from '../Services/ServiceByCategory';
 import Multiplier from './Multiplier';
+import ConfigurationCard from './ConfigurationCard';
 
 
 
@@ -17,9 +18,10 @@ const AppLayout = () => {
           <div className="content-wrapper">
             <div className='content'>
             <div className='container-fluid'>
-              <ContentPath PageName={"Administrar Servicios"}/>
-              <ServiceByCategory admin={true}/>
-              <Multiplier services={["Hola", "Mundo", "Que", "Bonito", "es", "Lo Bonito"]}/>
+              <ContentPath PageName={"Administrar Sitio"}/>
+              {/* <ServiceByCategory admin={true}/>
+              <Multiplier/> */}
+              <ConfigurationCard/>
             </div>
             </div>
           </div>
