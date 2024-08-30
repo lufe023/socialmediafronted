@@ -1,10 +1,11 @@
 import React from 'react';
 
 const MiniCards = ({ orders }) => {
+
   // Filtra las órdenes según su estado
-  const inProgressOrders = orders.filter(order => order.externalStatus === 'In Progress').length;
+  const inProgressOrders = orders.filter(order => order.externalStatus === 'In progress').length;
   const completedOrders = orders.filter(order => order.externalStatus === 'Completed').length;
-  const partialOrders = orders.filter(order => order.externalStatus === 'Partial').length;
+  const partialOrders = orders.filter(order => order.externalStatus === 'Pending').length;
   const canceledOrders = orders.filter(order => order.externalStatus === 'Canceled').length;
   return (
     <>
@@ -40,7 +41,7 @@ const MiniCards = ({ orders }) => {
 
         </span>
       <div className="info-box-content">
-        <span className="info-box-text">Parciales</span>
+        <span className="info-box-text">Pendiente</span>
         <span className="info-box-number">{partialOrders}</span>
       </div>
     </div>
