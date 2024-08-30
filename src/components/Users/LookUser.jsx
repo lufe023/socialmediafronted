@@ -48,7 +48,6 @@ return (
 <div  className='card-footer card-comments'>
     {
         results?.map(user=>
-         
                 <div  key={user?.id} className="card-comment">
                 <img className="img-circle img-sm" src={user?.picture ? user.picture : "/img/noprofilepic.jpg"} alt="User Image" />
                 <div className="comment-text">

@@ -24,7 +24,7 @@ const AllUsers = ({users, userDisable, getAllUsers, currentPage}) => {
     <li className="item" key={user.id}> 
 
     <div className="product-img">
-          <img src={user?.picture ? user.picture : "/img/noprofilepic.jpg"} alt="Product Image" className="img-size-50" />
+          <img src={user?.picture ? user.picture : "/img/noprofilepic.jpg"}  className="img-size-50" />
           
         </div>
         <div className="product-info">
