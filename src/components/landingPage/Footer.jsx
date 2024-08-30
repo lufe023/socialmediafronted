@@ -18,9 +18,9 @@ const Footer = () => {
             <h5 className="text-uppercase">Enlaces Rápidos</h5>
             <ul className="list-unstyled">
               <li><Link to="/" className="text-light link-underline link-underline-opacity-0">Inicio</Link></li>
-              <li><Link to="/services" className="text-light link-underline link-underline-opacity-0">Servicios</Link></li>
+              <li><Link to="/dashboard" className="text-light link-underline link-underline-opacity-0">Servicios</Link></li>
               <li><Link to="/contact" className="text-light link-underline link-underline-opacity-0">Contacto</Link></li>
-              <li><Link to="/about" className="text-light link-underline link-underline-opacity-0">Sobre Nosotros</Link></li>
+              {/* <li><Link to="/about" className="text-light link-underline link-underline-opacity-0">Sobre Nosotros</Link></li> */}
             </ul>
           </div>
           <div className="col-md-4">

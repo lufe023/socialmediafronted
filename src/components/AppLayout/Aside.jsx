@@ -47,12 +47,12 @@ const Aside = () => {
                 <p>Perfil</p>
               </NavLink>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <NavLink to={'/services'} className="nav-link">
                 <i className="fas fa-circle nav-icon" />
                 <p>Servicios</p>
               </NavLink>
-            </li>
+            </li> */}
 
             <li  className={'nav-item menu-is-openig menu-open'}>
                 <NavLink  className={({isActive}) => isActive ? 'nav-link active bg-info' : 'nav-link'}>

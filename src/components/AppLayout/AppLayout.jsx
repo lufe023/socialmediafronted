@@ -60,9 +60,9 @@ const AppLayout = () => {
               <ServiceOrderList orders={orders}/>
               </div>
             </div>
-            <div style={{marginTop:"100px"}}>
+            {/* <div style={{marginTop:"100px"}}>
           <ServiceByCategory admin={false}/>
-          </div>
+          </div> */}
             </div>
             </section>
           </div>

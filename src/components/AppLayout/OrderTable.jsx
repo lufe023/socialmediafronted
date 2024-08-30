@@ -52,8 +52,8 @@ const OrderTable = ({orders}) => {
     </div>
   </div>
   <div className="card-body p-0" style={{display: 'block'}}>
-    <div className="table-responsive">
-      <table className="table m-0">
+    <div className="table-responsive " style={{height: "490px"}}>
+      <table className="table m-0  table-head-fixed ">
         <thead>
           <tr>
             <th>Servicio</th>
@@ -74,7 +74,7 @@ const OrderTable = ({orders}) => {
                 Estado: {order.externalStatus}
                 </li>
                 <li>
-                Costo Total: {order.customerPrice}
+                Costo Total: {order.customerPrice.toFixed(5)}
                 </li>
                 <li>
                   Inició en: <span> {order.startCount} </span>
@@ -84,15 +84,15 @@ const OrderTable = ({orders}) => {
             
             </td>
             <td>
-           <div className="btn-group-vertical">
+    <div className="btn-group-vertical">
   <a type="button" target='blank' href={order.link} className="btn btn-default" style={{textAlign:"left"}}><i className="fas fa-link"></i> Ir al Link</a>
   <button style={{textAlign:"left"}} type="button" className="btn btn-default" onClick={()=>copiarUrlLink(order.link)}><i className="far fa-copy"/> Copiar Link</button>
-  <Link 
+  {/* <Link 
   style={{textAlign:"left", minWidth:"130px"}}
     to={`/service/buying/${order.serviceId}?url=${encodeURIComponent(order.link)}&cantidad=${order.quantity}`} 
     className="btn btn-default">
     <i className="fas fa-shopping-cart" /> Recontratar
-</Link>
+</Link> */}
 </div>
 
 

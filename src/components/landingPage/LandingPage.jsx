@@ -35,9 +35,9 @@ const LandingPage = () => {
         <li className="nav-item">
           <a target='_blank' href="https://wa.me/message/YMFN5X4CFQF2K1" className="nav-link">Contactos</a>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
         <Link to="/services"  className="nav-link">Servicios</Link>
-        </li>
+        </li> */}
         <li className="nav-item">
         <Link to="/dashboard"  className="nav-link">Dashboard</Link>
         </li>
