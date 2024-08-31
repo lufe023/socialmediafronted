@@ -33,7 +33,7 @@ const OrderCard = ({ transaction, allCollapsed }) => {
           </h3>
 
           <div className="card-tools">
-            <span className="badge badge-info">{transaction.amount}</span>
+            <span className="badge badge-info">{transaction.amount.toFixed(5)}</span>
             <span className="time badge">
               {new Date(transaction.createdAt).toLocaleDateString()}
             </span>
@@ -70,9 +70,9 @@ const OrderCard = ({ transaction, allCollapsed }) => {
             </li>
           </ul>
           <div className="card-footer text-center">
-            {transaction.type === 'Ingreso' ? '' :
+            {/* {transaction.type === 'Ingreso' ? '' :
               <Link to={`/orders/${transaction.id}`} className="uppercase">Ver Comprobante</Link>
-            }
+            } */}
           </div>
         </div>
       </div>
