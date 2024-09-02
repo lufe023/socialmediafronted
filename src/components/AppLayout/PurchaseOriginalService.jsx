@@ -168,7 +168,7 @@ const PurchaseOriginalService = () => {
                 </div>
                 <div className="form-group">
                     <label>Fondos Restantes:</label>
-                    <p>${(user?.fondos?.balance - totalCost).toFixed(5)}</p>
+                    <p>${(user?.fondos?.balance || 0 - totalCost).toFixed(5)}</p>
                 </div>
                 <button
                     id="buyButton"
