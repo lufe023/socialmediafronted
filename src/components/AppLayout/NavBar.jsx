@@ -47,10 +47,10 @@ const NavBar = () => {
             <i className="fas fa-bars"></i>
           </a>
         </li>
-        <li className="nav-item">
+        <li className="nav-item d-none d-sm-inline-block">
           <Link to="/dashboard" className="nav-link">Dashboard</Link>
         </li>
-        <li className="nav-item">
+        <li className="nav-item d-none d-sm-inline-block">
           <a target='_blank' href="https://wa.me/message/YMFN5X4CFQF2K1" className="nav-link">Contactos</a>
         </li>
       </ul>
