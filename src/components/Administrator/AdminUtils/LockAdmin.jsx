@@ -9,9 +9,11 @@ import axios from 'axios'
 import getConfig from '../../utils/getConfig'
 import NavBar from '../../AppLayout/NavBar'
 import Aside from '../../AppLayout/Aside'
+import FooterLayout from '../../AppLayout/FooterLayout'
+import { DarkModeProvider, useDarkMode } from '../../../components/utils/DarkModeContext';
 
 const LockAdmin = ({setAccess,setPasswordFail, passwordFail}) => {
-
+  const { darkMode } = useDarkMode(); // Usando el hook
     const [user, setUser] = useState(useSelector(state=> state.userSlice))
     const [msg, setMsg] = useState() 
     const {register, handleSubmit, reset} = useForm()
@@ -113,12 +115,12 @@ if(user?.firstName=="Cargando"){
 
 
   return (
-    <>
+    <DarkModeProvider>
     <NavBar/>
     <Aside/>
-    <div className="content-wrapper">
+    <div className="content-wrapper ">
     <section className="content">
-<div className='hold-transition lockscreen'>
+<div className={`hold-transition  ${darkMode?'dark-mode':''}`}>
   <div className="" style={{height:"90vh", width:"100%", display:"flex", alignItems:"center", justifyContent:"center"}}>
 <div>
   <div className="lockscreen-logo">
@@ -174,7 +176,8 @@ if(user?.firstName=="Cargando"){
 </div>
     </section>
     </div>
-    </>
+    <FooterLayout/>
+    </DarkModeProvider>
   )
 }
 

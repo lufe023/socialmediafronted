@@ -10,6 +10,7 @@ import getConfig from '../utils/getConfig';
 import Advertisement from './Advertisement';
 import ServiceByCategory from '../Services/ServiceByCategory';
 import PurchaseOriginalService from './PurchaseOriginalService';
+import FooterLayout from './FooterLayout';
 
 const AppLayout = () => {
 
@@ -43,8 +44,8 @@ const AppLayout = () => {
           <NavBar/>
           <Aside/>
           <div className="content-wrapper">
-            <section className='content'>
-            <div className='container-fluid'>
+            <section className='content' >
+            <div className='container-fluid '>
 
             <ContentPath PageName={"Dashboard"}/>
             {/* <MiniCards/> */}
@@ -66,7 +67,8 @@ const AppLayout = () => {
             </div>
             </section>
           </div>
-          {/* <Footer /> */}
+            <FooterLayout/>
+
         </div>
       );
     };

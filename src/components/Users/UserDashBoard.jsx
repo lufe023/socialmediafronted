@@ -9,6 +9,7 @@ import Aside from '../AppLayout/Aside'
 import LookUser from './LookUser'
 import getConfig from '../utils/getConfig'
 import Spinner from '../utils/Spiner'
+import FooterLayout from '../AppLayout/FooterLayout'
 
 const UserDashBoard = () => {
 
@@ -159,6 +160,7 @@ const UserDashBoard = () => {
     
   </section>
         </div>
+        {/* <FooterLayout/> */}
 </div>
   )
 }

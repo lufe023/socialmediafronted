@@ -9,9 +9,11 @@ import Multiplier from './Multiplier';
 import ConfigurationCard from './ConfigurationCard';
 import Balance from './Balance';
 import Spinner from "../utils/Spiner";
+import FooterLayout from '../AppLayout/FooterLayout';
 
 const AppLayout = () => {
     return (
+      <>
         <div className="wrapper">
           <NavBar/>
           <Aside/>
@@ -35,8 +37,9 @@ const AppLayout = () => {
             </div>
             </div>
           </div>
-          {/* <Footer /> */}
         </div>
+            <FooterLayout/>
+            </>
       );
     };
 

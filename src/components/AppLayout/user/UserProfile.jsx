@@ -13,6 +13,7 @@ import UpdateDataUser from './Forms/UpdateDataUser'
 import FundTransactionForm from './FundTransactionForm'
 import TransactionsHistory from './TransactionsHistory'
 import getHistoryTransactions from './getHistoryTransactions'
+import FooterLayout from '../FooterLayout'
 
 const UserProfile = () => {
 
@@ -189,6 +190,7 @@ const urlRecuperation =  `${import.meta.env.VITE_FRONT_DOMAIN}/#recoverypassword
   </div>{/* /.container-fluid */}
 </section>
 </div>
+<FooterLayout/>
 
  </>
   )
